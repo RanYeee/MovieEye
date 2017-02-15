@@ -1,0 +1,6 @@
+framework module Pods_MovieEye {
+  umbrella header "Pods-MovieEye-umbrella.h"
+
+  export *
+  module * { export * }
+}
