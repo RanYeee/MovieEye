@@ -19,4 +19,5 @@
 #import "NSObject+log.h"
 #import "UINavigationItem+CustomBackButton.h"
 #import "UIImageView+WebCache.h"
+#import "BaseTableViewCell.h"
 #endif /* ME_Prefix_pch */

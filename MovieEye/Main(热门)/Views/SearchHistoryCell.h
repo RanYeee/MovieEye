@@ -14,12 +14,11 @@
 
 @end
 
-@interface SearchHistoryCell : UITableViewCell
+@interface SearchHistoryCell : BaseTableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *historyKeyLabel;
 
 @property (nonatomic ,strong) NSIndexPath *indexPath;
 
 @property (nonatomic ,weak)id <SearchHistoryCellDelegate>delegate;
 
-+ (instancetype)createFromXIB;
 @end

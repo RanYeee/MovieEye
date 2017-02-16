@@ -16,7 +16,7 @@
 
 @end
 
-@interface DetailHeaderCell : UITableViewCell
+@interface DetailHeaderCell : BaseTableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (strong, nonatomic) IBOutlet HCSStarRatingView *starView;
 @property (strong, nonatomic) IBOutlet UIImageView *movieImageView;
@@ -39,7 +39,7 @@
 
 @property (nonatomic ,weak) id <DetailHeaderCellDelegate> delegate;
 
-+ (instancetype)createFromXIB;
+
 
 - (void)setInfoDisplayWithDetailInfoModel:(MovieDetailInfoModel *)model;
 

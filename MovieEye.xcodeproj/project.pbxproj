@@ -36,6 +36,11 @@
 		297387B61E53F23B009688AE /* MovieDetailInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 297387B51E53F23B009688AE /* MovieDetailInfoModel.m */; };
 		297387BA1E5434D1009688AE /* PerformerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 297387B81E5434D1009688AE /* PerformerCell.m */; };
 		297387BB1E5434D1009688AE /* PerformerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297387B91E5434D1009688AE /* PerformerCell.xib */; };
+		297605471E55440600D855A5 /* BoxOfficeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 297605451E55440600D855A5 /* BoxOfficeCell.m */; };
+		297605481E55440600D855A5 /* BoxOfficeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297605461E55440600D855A5 /* BoxOfficeCell.xib */; };
+		2976054B1E55524000D855A5 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2976054A1E55524000D855A5 /* BaseTableViewCell.m */; };
+		2976054F1E5593C500D855A5 /* FilmStillCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2976054D1E5593C500D855A5 /* FilmStillCell.m */; };
+		297605501E5593C500D855A5 /* FilmStillCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2976054E1E5593C500D855A5 /* FilmStillCell.xib */; };
 		29915C8E1E4B042B000997AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29915C8D1E4B042B000997AC /* main.m */; };
 		29915C911E4B042B000997AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29915C901E4B042B000997AC /* AppDelegate.m */; };
 		29915C971E4B042B000997AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29915C951E4B042B000997AC /* Main.storyboard */; };
@@ -130,6 +135,14 @@
 		297387B71E5434D1009688AE /* PerformerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformerCell.h; sourceTree = "<group>"; };
 		297387B81E5434D1009688AE /* PerformerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformerCell.m; sourceTree = "<group>"; };
 		297387B91E5434D1009688AE /* PerformerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PerformerCell.xib; sourceTree = "<group>"; };
+		297605441E55440600D855A5 /* BoxOfficeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeCell.h; sourceTree = "<group>"; };
+		297605451E55440600D855A5 /* BoxOfficeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeCell.m; sourceTree = "<group>"; };
+		297605461E55440600D855A5 /* BoxOfficeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoxOfficeCell.xib; sourceTree = "<group>"; };
+		297605491E55524000D855A5 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		2976054A1E55524000D855A5 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		2976054C1E5593C500D855A5 /* FilmStillCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilmStillCell.h; sourceTree = "<group>"; };
+		2976054D1E5593C500D855A5 /* FilmStillCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilmStillCell.m; sourceTree = "<group>"; };
+		2976054E1E5593C500D855A5 /* FilmStillCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilmStillCell.xib; sourceTree = "<group>"; };
 		29915C891E4B042B000997AC /* MovieEye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieEye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29915C8D1E4B042B000997AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29915C8F1E4B042B000997AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -251,6 +264,14 @@
 				297387B71E5434D1009688AE /* PerformerCell.h */,
 				297387B81E5434D1009688AE /* PerformerCell.m */,
 				297387B91E5434D1009688AE /* PerformerCell.xib */,
+				297605441E55440600D855A5 /* BoxOfficeCell.h */,
+				297605451E55440600D855A5 /* BoxOfficeCell.m */,
+				297605461E55440600D855A5 /* BoxOfficeCell.xib */,
+				297605491E55524000D855A5 /* BaseTableViewCell.h */,
+				2976054A1E55524000D855A5 /* BaseTableViewCell.m */,
+				2976054C1E5593C500D855A5 /* FilmStillCell.h */,
+				2976054D1E5593C500D855A5 /* FilmStillCell.m */,
+				2976054E1E5593C500D855A5 /* FilmStillCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -516,7 +537,9 @@
 				293045841E4C515F00738F71 /* MovieListCell.xib in Resources */,
 				29915C971E4B042B000997AC /* Main.storyboard in Resources */,
 				297387BB1E5434D1009688AE /* PerformerCell.xib in Resources */,
+				297605501E5593C500D855A5 /* FilmStillCell.xib in Resources */,
 				29B048291E51B2D00045D8FE /* DetailHeaderCell.xib in Resources */,
+				297605481E55440600D855A5 /* BoxOfficeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +617,7 @@
 				2915DD351E4DB48100D3122E /* MovieSearchController.m in Sources */,
 				29B048231E518B790045D8FE /* SearchHistoryCell.m in Sources */,
 				29B048281E51B2D00045D8FE /* DetailHeaderCell.m in Sources */,
+				2976054B1E55524000D855A5 /* BaseTableViewCell.m in Sources */,
 				2971125B1E4C127D00D52C91 /* UIImage+MultiFormat.m in Sources */,
 				297112561E4C127D00D52C91 /* SDWebImageDownloaderOperation.m in Sources */,
 				297112091E4B108300D52C91 /* APIRequestManager.m in Sources */,
@@ -604,6 +628,7 @@
 				293045821E4C515F00738F71 /* MovieListController.m in Sources */,
 				2971125C1E4C127D00D52C91 /* UIImage+WebP.m in Sources */,
 				2971125E1E4C127D00D52C91 /* UIImageView+WebCache.m in Sources */,
+				297605471E55440600D855A5 /* BoxOfficeCell.m in Sources */,
 				293045871E4C567600738F71 /* MovieInfoModel.m in Sources */,
 				297112551E4C127D00D52C91 /* SDWebImageDownloader.m in Sources */,
 				29B0481F1E5157B10045D8FE /* UINavigationItem+CustomBackButton.m in Sources */,
@@ -621,6 +646,7 @@
 				29B0481C1E514E740045D8FE /* HotSearchModel.m in Sources */,
 				297112571E4C127D00D52C91 /* SDWebImageManager.m in Sources */,
 				297112541E4C127D00D52C91 /* SDWebImageDecoder.m in Sources */,
+				2976054F1E5593C500D855A5 /* FilmStillCell.m in Sources */,
 				297112521E4C127D00D52C91 /* SDImageCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -774,7 +800,7 @@
 				DEVELOPMENT_TEAM = U353BQ28K8;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MovieEye/ME-Prefix.pch";
 				INFOPLIST_FILE = MovieEye/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rany.MovieEye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -789,7 +815,7 @@
 				DEVELOPMENT_TEAM = U353BQ28K8;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MovieEye/ME-Prefix.pch";
 				INFOPLIST_FILE = MovieEye/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rany.MovieEye;
 				PRODUCT_NAME = "$(TARGET_NAME)";

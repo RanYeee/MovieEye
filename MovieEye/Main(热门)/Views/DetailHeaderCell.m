@@ -121,10 +121,7 @@ static BOOL kisOpen = NO;
     
     
 }
-+(instancetype)createFromXIB
-{
-    return [[NSBundle mainBundle]loadNibNamed:NSStringFromClass(self) owner:nil options:nil][0];
-}
+
 - (IBAction)playVideoButtonClick:(id)sender {
 }
 - (IBAction)readMoreClick:(UIButton *)sender {

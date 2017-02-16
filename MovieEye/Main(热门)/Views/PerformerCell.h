@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PerformerCell : UITableViewCell
+@interface PerformerCell : BaseTableViewCell
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-+(instancetype)createFromXIB;
+
 - (void)addPerformerInfoWithDatas:(NSArray *)actorsList;
 @end
