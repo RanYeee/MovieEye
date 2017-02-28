@@ -10,7 +10,8 @@
 #import "CommentTagCell.h"
 #import "CommentModel.h"
 #import "CommentCell.h"
-#define kPageLimit @"10"  //每页个数
+#import <MJRefresh/MJRefresh.h>
+#define kPageLimit @"6"  //每页个数
 #define kTestArray @[@"全部",@"好评11234",@"差评1120",@"购票99877",@"认证作者12",@"同城980"]
 static NSString *tagCellID = @"tagCellId";
 static NSString *hcmtsCellID = @"hcmtsCellId";
@@ -35,6 +36,7 @@ static NSString *hcmtsCellID = @"hcmtsCellId";
     self.title = @"所有评论";
     [self loadDataWithMovieId:self.movieId Complete:^{
         
+        _currentTag = @"0";
         
         self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         
@@ -47,6 +49,10 @@ static NSString *hcmtsCellID = @"hcmtsCellId";
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         [self.tableView  registerClass:[CommentTagCell class] forCellReuseIdentifier:tagCellID];
+        
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(pullToLoadNewData)];
+        
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerFefresh)];
 
     }];
 
@@ -83,6 +89,75 @@ static NSString *hcmtsCellID = @"hcmtsCellId";
     }
     
     return _tagTitleArray;
+}
+
+//下拉刷新数据
+- (void)pullToLoadNewData
+{
+    __weak typeof(self) weakSelf = self;
+    
+    [self loadMoreCommentWithOffSet:0 Tag:_currentTag Complete:^(id comment) {
+       
+        if ([_currentTag integerValue]==0) {
+            
+            //重新加载热门评论
+            [weakSelf.hcmtsArray removeAllObjects];
+            
+            [weakSelf.hcmtsArray addObjectsFromArray:[CommentModel mj_objectArrayWithKeyValuesArray:comment[@"hcmts"]]];
+
+        }
+        
+        
+        //重新加载组最评论
+        [weakSelf.cmtsArray removeAllObjects];
+        
+        [weakSelf.cmtsArray addObjectsFromArray: [CommentModel mj_objectArrayWithKeyValuesArray:comment[@"cmts"]]];
+        
+        //重置offset
+        _currentOffset = 0;
+        
+        //刷新tableview
+        
+        [weakSelf.tableView reloadData];
+        
+        [weakSelf.tableView.mj_header endRefreshing];
+        
+    }];
+}
+
+//上拉刷新数据
+- (void)footerFefresh
+{
+    _currentOffset +=1;
+    
+    __weak typeof(self) weakSelf = self;
+
+    [self loadMoreCommentWithOffSet:_currentOffset Tag:_currentTag Complete:^(id comment) {
+       
+        
+        if ([_currentTag integerValue]==0) {
+            
+            //重新加载热门评论
+            
+            [weakSelf.hcmtsArray addObjectsFromArray:[CommentModel mj_objectArrayWithKeyValuesArray:comment[@"hcmts"]]];
+            
+        }
+        
+        
+        //重新加载组最评论
+        
+        [weakSelf.cmtsArray addObjectsFromArray: [CommentModel mj_objectArrayWithKeyValuesArray:comment[@"cmts"]]];
+        
+        //重置offset
+        _currentOffset = 0;
+        
+        //刷新tableview
+        
+        [weakSelf.tableView reloadData];
+        
+        [weakSelf.tableView.mj_footer endRefreshing];
+
+    }];
 }
 
 //加载评论数据（翻页）
@@ -345,6 +420,8 @@ static NSString *hcmtsCellID = @"hcmtsCellId";
 
 -(void)commentTagCell:(CommentTagCell *)cell didClickTagAtIndex:(NSInteger)index
 {
+    __weak typeof(self) weakSelf = self;
+
     if (index == 0) {
         
         _currentTag = @"0";
@@ -352,22 +429,22 @@ static NSString *hcmtsCellID = @"hcmtsCellId";
         [self loadMoreCommentWithOffSet:10 Tag:@"0" Complete:^(id comment) {
            
             //重新加载热门评论
-            [self.hcmtsArray removeAllObjects];
+            [weakSelf.hcmtsArray removeAllObjects];
             
-            [self.hcmtsArray addObjectsFromArray:[CommentModel mj_objectArrayWithKeyValuesArray:comment[@"hcmts"]]];
+            [weakSelf.hcmtsArray addObjectsFromArray:[CommentModel mj_objectArrayWithKeyValuesArray:comment[@"hcmts"]]];
             
             
             //重新加载组最评论
-            [self.cmtsArray removeAllObjects];
+            [weakSelf.cmtsArray removeAllObjects];
 
-            [self.cmtsArray addObjectsFromArray: [CommentModel mj_objectArrayWithKeyValuesArray:comment[@"cmts"]]];
+            [weakSelf.cmtsArray addObjectsFromArray: [CommentModel mj_objectArrayWithKeyValuesArray:comment[@"cmts"]]];
 
             //重置offset
             _currentOffset = 0;
             
             //刷新tableview
             
-            [self.tableView reloadData];
+            [weakSelf.tableView reloadData];
             
         }];
         
@@ -381,16 +458,16 @@ static NSString *hcmtsCellID = @"hcmtsCellId";
           
             
             //重新加载组最评论
-            [self.cmtsArray removeAllObjects];
+            [weakSelf.cmtsArray removeAllObjects];
             
-            [self.cmtsArray addObjectsFromArray: [CommentModel mj_objectArrayWithKeyValuesArray:comment[@"cmts"]]];
+            [weakSelf.cmtsArray addObjectsFromArray: [CommentModel mj_objectArrayWithKeyValuesArray:comment[@"cmts"]]];
             
             //重置offset
             _currentOffset = 0;
             
             //刷新tableview
             
-            [self.tableView reloadData];
+            [weakSelf.tableView reloadData];
 
             
         }];

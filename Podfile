@@ -7,4 +7,5 @@ pod 'MJExtension'
 pod 'Masonry'
 pod 'UITableView+FDTemplateLayoutCell', '~> 1.5.beta'
 pod 'DateTools'
+pod 'MJRefresh'
 end

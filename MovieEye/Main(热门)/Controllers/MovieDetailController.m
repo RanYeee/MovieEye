@@ -19,6 +19,13 @@
 #import <UITableView_FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "SDAutoLayout.h"
 #import "ShotCommentController.h"
+
+static NSString *detailHeaderCellID = @"detailHeaderCellID";
+static NSString *performerCellID = @"performerCellID";
+static NSString *boxOfficeCellID = @"boxOfficeCellID";
+static NSString *filmStillCellID = @"filmStillCellID";
+static NSString *commentCellID = @"commentCellID";
+
 @interface MovieDetailController ()<UITableViewDelegate,UITableViewDataSource,DetailHeaderCellDelegate>
 {
     CGFloat _textHeight;
@@ -49,7 +56,17 @@
 //        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
         [self.view addSubview:self.tableView];
         [QMUITips hideAllToastInView:self.view animated:YES];
+        
+        
+        [self.tableView registerNib:[UINib nibWithNibName:@"DetailHeaderCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:detailHeaderCellID];
 
+        [self.tableView registerNib:[UINib nibWithNibName:@"PerformerCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:performerCellID];
+        
+        [self.tableView registerNib:[UINib nibWithNibName:@"BoxOfficeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:boxOfficeCellID];
+        
+        [self.tableView registerNib:[UINib nibWithNibName:@"FilmStillCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:filmStillCellID];
+        
+        [self.tableView registerNib:[UINib nibWithNibName:@"CommentCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:commentCellID];
     }];
     
 }
@@ -142,11 +159,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *detailHeaderCellID = @"detailHeaderCellID";
-    static NSString *performerCellID = @"performerCellID";
-    static NSString *boxOfficeCellID = @"boxOfficeCellID";
-    static NSString *filmStillCellID = @"filmStillCellID";
-    static NSString *commentCellID = @"commentCellID";
+
 
     if (indexPath.section == 0) {
         
@@ -155,8 +168,7 @@
         DetailHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:detailHeaderCellID];
         
         if (!cell) {
-            
-            [tableView registerNib:[UINib nibWithNibName:@"DetailHeaderCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:detailHeaderCellID];
+          
             cell = [DetailHeaderCell createFromXIB];
 
         }
@@ -174,7 +186,7 @@
         PerformerCell *cell = [tableView dequeueReusableCellWithIdentifier:performerCellID];
         
         if (!cell) {
-            [tableView registerNib:[UINib nibWithNibName:@"PerformerCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:performerCellID];
+       
             cell = [PerformerCell createFromXIB];
             
 
@@ -188,7 +200,7 @@
         
         BoxOfficeCell *cell = [tableView dequeueReusableCellWithIdentifier:boxOfficeCellID];
         if (!cell) {
-                 [tableView registerNib:[UINib nibWithNibName:@"BoxOfficeCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:boxOfficeCellID];
+          
             cell = [BoxOfficeCell createFromXIB];
             
 
@@ -201,7 +213,7 @@
 
         FilmStillCell *cell = [tableView dequeueReusableCellWithIdentifier:filmStillCellID];
         if (!cell) {
-            [tableView registerNib:[UINib nibWithNibName:@"FilmStillCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:filmStillCellID];
+           
             cell = [FilmStillCell createFromXIB];
 
         }
@@ -217,7 +229,7 @@
 
         CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:commentCellID];
         if (!cell) {
-            [tableView registerNib:[UINib nibWithNibName:@"CommentCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:commentCellID];
+   
             cell = [CommentCell createFromXIB];
             
         }
