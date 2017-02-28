@@ -51,7 +51,24 @@
  offset : 数据开始位置
  limit : 偏移量
  */
-#define API_MOVIE_COMMENT(movieid,offset,limit) [NSString stringWithFormat:@"https://m.maoyan.com/comments.json?movieid=%@&limit=%@&offset=%@",limit,offset]
+#define API_MOVIE_COMMENT(movieid,limit,offset) [NSString stringWithFormat:@"https://m.maoyan.com/comments.json?movieid=%@&limit=%@&offset=%@",movieid,limit,offset]
+
+/**
+ 短评评论
+ movieid : 电影id
+ tag: 短评标签(详见短评标签API)
+ offset : 数据开始位置
+ limit : 偏移量
+ */
+
+#define API_MOVIE_COMMENT_SHOT(movieid,tag,limit,offset) [NSString stringWithFormat:@"http://api.maoyan.com/mmdb/comments/movie/v2/%@.json?tag=%@&limit=%@&offset=%@",movieid,tag,limit,offset]
+
+
+/**
+ 评论标签
+ movieid : 电影id
+ */
+#define API_MOVIE_COMMENT_TAG(movieid) [NSString stringWithFormat:@"http://api.maoyan.com/mmdb/comment/tag/movie/%@.json",movieid]
 
 /**
  查出影院(会自动根据你的ip段加载出你本地的影院)

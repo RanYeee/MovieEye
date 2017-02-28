@@ -20,21 +20,46 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [QMUIConfigurationTemplate setupConfigurationTemplate];
     
-    [QMUIConfigurationManager renderGlobalAppearances];
+//    [QMUIConfigurationManager renderGlobalAppearances];
+
+//    [QMUIConfigurationManager sharedInstance].navBarTitleColor = [UIColor whiteColor];
 
      [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor  whiteColor]} forState:UIControlStateNormal];
     
-       [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:RGB(207, 41, 45)} forState:UIControlStateSelected];
+       [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:CustomRedColor} forState:UIControlStateSelected];
     
-    [[UITabBar appearance] setTintColor:RGB(207, 41, 45)];
+    [[UITabBar appearance] setTintColor:CustomRedColor];
     
     //返回按钮的箭头颜色
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
+    //设置返回样式图片
     
+    UIImage *image = [UIImage imageNamed:@"back"];
+    
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    [UINavigationBar appearance].backIndicatorImage = image;
+    
+    [UINavigationBar appearance].backIndicatorTransitionMaskImage = image;
     
     return YES;
+}
+
+-(UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    
+    if (self.isForcePortrait && self.isForceLandscape) {
+        
+        return  UIInterfaceOrientationMaskAll;
+    }
+    
+    if (self.isForceLandscape) {
+        return UIInterfaceOrientationMaskLandscape;
+    }else if (self.isForcePortrait){
+        return UIInterfaceOrientationMaskPortrait;
+    }
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 

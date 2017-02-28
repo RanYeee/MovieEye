@@ -23,7 +23,7 @@
 
 static char isPushingViewControllerKey;
 - (void)setQmui_isPushingViewController:(BOOL)qmui_isPushingViewController {
-    objc_setAssociatedObject(self, &isPushingViewControllerKey, [NSNumber numberWithBool:qmui_isPushingViewController], OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, &isPushingViewControllerKey, [NSNumber numberWithBool:qmui_isPushingViewController], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 - (BOOL)qmui_isPushingViewController {
     return (BOOL)[objc_getAssociatedObject(self, &isPushingViewControllerKey) boolValue];
@@ -31,7 +31,7 @@ static char isPushingViewControllerKey;
 
 static char isPopingViewControllerKey;
 - (void)setQmui_isPoppingViewController:(BOOL)qmui_isPoppingViewController {
-    objc_setAssociatedObject(self, &isPopingViewControllerKey, [NSNumber numberWithBool:qmui_isPoppingViewController], OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, &isPopingViewControllerKey, [NSNumber numberWithBool:qmui_isPoppingViewController], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 - (BOOL)qmui_isPoppingViewController {
     return (BOOL)[objc_getAssociatedObject(self, &isPopingViewControllerKey) boolValue];;
@@ -54,7 +54,10 @@ static char originGestureDelegateKey;
     UIViewController *viewController = [self topViewController];
     
     BOOL canPopViewController = YES;
-    if ([viewController respondsToSelector:@selector(shouldHoldBackButtonEvent)] && [viewController shouldHoldBackButtonEvent] &&
+    //item == viewController.navigationItem to fix: 如果前后2个controller都需要hold时的BUG.
+    if ((item == viewController.navigationItem) &&
+        [viewController respondsToSelector:@selector(shouldHoldBackButtonEvent)] &&
+        [viewController shouldHoldBackButtonEvent] &&
         [viewController respondsToSelector:@selector(canPopViewController)]) {
         canPopViewController = [viewController canPopViewController];
     }

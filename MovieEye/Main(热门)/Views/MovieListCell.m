@@ -20,6 +20,11 @@
     return [[NSBundle mainBundle]loadNibNamed:@"MovieListCell" owner:self options:nil][0];
 }
 
++(instancetype)createPlaceHolderCell
+{
+    return [[NSBundle mainBundle]loadNibNamed:@"MovieListCell" owner:self options:nil][1];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

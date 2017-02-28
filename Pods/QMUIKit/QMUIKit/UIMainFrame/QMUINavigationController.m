@@ -13,6 +13,7 @@
 #import "QMUICommonViewController.h"
 #import "QMUIButton.h"
 #import "QMUIHelper.h"
+#import "UIViewController+QMUI.h"
 #import "UINavigationController+QMUI.h"
 
 @interface QMUINavigationController () <UIGestureRecognizerDelegate>
@@ -161,17 +162,6 @@
         self.isViewControllerTransiting = YES;
     }
     
-    if (self.childViewControllers.count != 0) { // 非根控制器
-        
-        viewController.hidesBottomBarWhenPushed = YES;
-        
-        
-    }else{
-        
-        viewController.hidesBottomBarWhenPushed = NO;
-        
-    }
-    
     self.qmui_isPushingViewController = YES;
     UIViewController *currentViewController = self.topViewController;
     if (currentViewController) {
@@ -308,16 +298,12 @@
 
 #pragma mark - 屏幕旋转
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return [self.topViewController respondsToSelector:@selector(shouldAutorotateToInterfaceOrientation:)] ? [self.topViewController shouldAutorotateToInterfaceOrientation:toInterfaceOrientation] : toInterfaceOrientation == UIInterfaceOrientationPortrait;
-}
-
 - (BOOL)shouldAutorotate {
-    return [self.topViewController respondsToSelector:@selector(shouldAutorotate)] ? [self.topViewController shouldAutorotate] : NO;
+    return [self.topViewController qmui_hasOverrideUIKitMethod:_cmd] ? [self.topViewController shouldAutorotate] : YES;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return [self.topViewController respondsToSelector:@selector(supportedInterfaceOrientations)] ? [self.topViewController supportedInterfaceOrientations] : UIInterfaceOrientationMaskPortrait;
+    return [self.topViewController qmui_hasOverrideUIKitMethod:_cmd] ? [self.topViewController supportedInterfaceOrientations] : SupportedOrientationMask;
 }
 
 @end

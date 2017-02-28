@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MovieListController : UIViewController
+@interface MovieListController : BaseViewController
 
 
 @end

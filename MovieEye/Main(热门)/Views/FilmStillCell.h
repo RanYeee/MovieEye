@@ -10,5 +10,7 @@
 
 @interface FilmStillCell : BaseTableViewCell
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic ,copy) NSString *mp4_Url;
+@property (nonatomic ,copy) NSArray *photoURLs;
 - (void)setStagePhotoWithPhotos:(NSArray *)photoURLs;
 @end

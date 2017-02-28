@@ -108,13 +108,13 @@
     //- QMUICMI.navBarBackgroundImage = nil;                                            // NavBarBackgroundImage
     //- QMUICMI.navBarShadowImage = nil;                                                // NavBarShadowImage
     //- QMUICMI.navBarBarTintColor = nil;                                               // NavBarBarTintColor
-    //- QMUICMI.navBarTintColor = UIColorBlack;                                         // NavBarTintColor
+ QMUICMI.navBarTintColor = UIColorBlack;                                         // NavBarTintColor
     //- QMUICMI.navBarTintColorHighlighted = [NavBarTintColor colorWithAlphaComponent:NavBarHighlightedAlpha];          // NavBarTintColorHighlighted
     //- QMUICMI.navBarTintColorDisabled = [NavBarTintColor colorWithAlphaComponent:NavBarDisabledAlpha];                // NavBarTintColorDisabled
-    //- QMUICMI.navBarTitleColor = NavBarTintColor;                                     // NavBarTitleColor
+QMUICMI.navBarTitleColor = NavBarTintColor;                                     // NavBarTitleColor
     //- QMUICMI.navBarTitleFont = UIFontBoldMake(17);                                   // NavBarTitleFont
     //- QMUICMI.navBarBackButtonTitlePositionAdjustment = UIOffsetZero;                 // NavBarBarBackButtonTitlePositionAdjustment
-    //- QMUICMI.navBarBackIndicatorImage = [UIImage qmui_imageWithShape:QMUIImageShapeNavBack size:CGSizeMake(12, 20) tintColor:NavBarTintColor];    // NavBarBackIndicatorImage
+ QMUICMI.navBarBackIndicatorImage = [UIImage qmui_imageWithShape:QMUIImageShapeNavBack size:CGSizeMake(12, 20) tintColor:NavBarTintColor];    // NavBarBackIndicatorImage
     //- QMUICMI.navBarCloseButtonImage = [UIImage qmui_imageWithShape:QMUIImageShapeNavClose size:CGSizeMake(16, 16) tintColor:NavBarTintColor];     // NavBarCloseButtonImage
     
     //- QMUICMI.navBarLoadingMarginRight = 3;                                           // NavBarLoadingMarginRight
@@ -124,12 +124,12 @@
     
     #pragma mark - TabBar
     
-    //- QMUICMI.tabBarBackgroundImage = nil;                                                            // TabBarBackgroundImage
-    //- QMUICMI.tabBarBarTintColor = nil;    // TabBarBarTintColor
-    //- QMUICMI.tabBarShadowImageColor = nil;                                    // TabBarShadowImageColor
-    //- QMUICMI.tabBarTintColor = UIColorMake(22, 147, 229);                                            // TabBarTintColor
-    //- QMUICMI.tabBarItemTitleColor = UIColorMake(119, 119, 119);                                      // TabBarItemTitleColor
-    //- QMUICMI.tabBarItemTitleColorSelected = TabBarTintColor;                                         // TabBarItemTitleColorSelected
+//    - QMUICMI.tabBarBackgroundImage = nil;                                                            // TabBarBackgroundImage
+//    - QMUICMI.tabBarBarTintColor = nil;    // TabBarBarTintColor
+//    - QMUICMI.tabBarShadowImageColor = nil;                                    // TabBarShadowImageColor
+QMUICMI.tabBarTintColor = UIColorMake(22, 147, 229);                                            // TabBarTintColor
+QMUICMI.tabBarItemTitleColor = UIColorMake(119, 119, 119);                                      // TabBarItemTitleColor
+//    - QMUICMI.tabBarItemTitleColorSelected = TabBarTintColor;                                         // TabBarItemTitleColorSelected
     
     #pragma mark - Toolbar
     

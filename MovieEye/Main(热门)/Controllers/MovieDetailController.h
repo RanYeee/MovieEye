@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MovieDetailController : UIViewController
+@interface MovieDetailController : BaseViewController
 
 @property (nonatomic ,copy) NSString *movieId; //电影id
 

@@ -24,7 +24,7 @@
  * @see QMUIDialogSelectionViewController
  * @see QMUIDialogTextFieldViewController
  */
-@interface QMUIDialogViewController : QMUICommonViewController<QMUIModalPresentationContentViewProtocol>
+@interface QMUIDialogViewController : QMUICommonViewController<QMUIModalPresentationContentViewControllerProtocol>
 
 @property(nonatomic, assign) CGFloat        cornerRadius UI_APPEARANCE_SELECTOR;
 @property(nonatomic, assign) UIEdgeInsets   contentViewMargins UI_APPEARANCE_SELECTOR;
@@ -38,7 +38,7 @@
 @property(nonatomic, strong) UIColor        *headerViewBackgroundColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, assign) CGFloat        footerViewHeight UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor        *footerViewBackgroundColor UI_APPEARANCE_SELECTOR;
-@property(nonatomic, strong) NSDictionary<NSString *, id> *buttonTitleAttributeds UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) NSDictionary<NSString *, id> *buttonTitleAttributes UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor        *buttonHighlightedBackgroundColor UI_APPEARANCE_SELECTOR;
 
 @property(nonatomic, strong, readonly) UIView *headerView;

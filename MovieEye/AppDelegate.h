@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-
+@property (assign , nonatomic) BOOL isForceLandscape;
+@property (assign , nonatomic) BOOL isForcePortrait;
 @end
 

@@ -8,11 +8,11 @@
 
 #import "DetailHeaderCell.h"
 #import "UIImage+WebP.h"
+#import "VideoPlayerController.h"
 static BOOL kisOpen = NO;
 @interface DetailHeaderCell()
 
 @property (strong, nonatomic) IBOutlet UIButton *downButton;
-
 @end
 
 @implementation DetailHeaderCell
@@ -27,15 +27,23 @@ static BOOL kisOpen = NO;
     
     self.imaxLabel.qmui_borderWidth = 0.5f;
     self.imaxLabel.qmui_borderPosition = QMUIBorderViewPositionTop |QMUIBorderViewPositionRight | QMUIBorderViewPositionBottom;
-    
-    if (kisOpen) {
-        
-        _downButton.transform = CGAffineTransformMakeRotation(M_PI);//旋转180度
-    }
+
 }
 
 -(void)setInfoDisplayWithDetailInfoModel:(MovieDetailInfoModel *)model
 {
+
+    //button
+    if (kisOpen) {
+        
+        [_downButton setImage:IMAGE(@"up") forState:UIControlStateNormal];
+        
+    }else{
+        
+        [_downButton setImage:IMAGE(@"down") forState:UIControlStateNormal];
+        
+    }
+    
     _infoModel = model;
     
     self.nmLabel.text = model.nm;
@@ -123,6 +131,13 @@ static BOOL kisOpen = NO;
 }
 
 - (IBAction)playVideoButtonClick:(id)sender {
+    
+    VideoPlayerController *videoPlayer = [[VideoPlayerController alloc]init];
+    
+    videoPlayer.mp4_URLString = self.infoModel.videourl;
+    
+    [self.getCurrentViewController.navigationController pushViewController:videoPlayer animated:YES];
+    
 }
 - (IBAction)readMoreClick:(UIButton *)sender {
     
@@ -132,16 +147,15 @@ static BOOL kisOpen = NO;
         CGFloat textHeight = [self heightForString:_infoModel.dra andWidth:self.bounds.size.width];
         
         if (kisOpen) {
-            
             [self.delegate detailHeaderCell:self readMoreClickWithTextHeight:-textHeight];
 
         }else{
             
-            [self.delegate detailHeaderCell:self readMoreClickWithTextHeight:textHeight];
 
+            [self.delegate detailHeaderCell:self readMoreClickWithTextHeight:textHeight];
         }
         
-        kisOpen = !kisOpen;
+      kisOpen = !kisOpen;
         
     }
 }

@@ -80,6 +80,7 @@
 #import "UINavigationController+QMUI.h"
 #import "UIScrollView+QMUI.h"
 #import "UISearchBar+QMUI.h"
+#import "UITabBar+QMUI.h"
 #import "UITabBarItem+QMUI.h"
 #import "UITableView+QMUI.h"
 #import "UIView+QMUI.h"

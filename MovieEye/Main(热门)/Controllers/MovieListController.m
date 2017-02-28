@@ -20,6 +20,7 @@
 
 @implementation MovieListController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"热门电影";
@@ -30,10 +31,16 @@
     QMUISearchBar *searchBar = [[QMUISearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
     searchBar.delegate = self;
     self.tableView.tableHeaderView = searchBar;
-    [self.navigationController.navigationBar setBarTintColor:RGB(207, 41, 45)];
+    [self.navigationController.navigationBar setBarTintColor:CustomRedColor];
     kStatusBarStyleLightContent;
     [self loadData];
 
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
 }
 
 -(NSMutableArray *)movieListArray
@@ -100,7 +107,12 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.movieListArray.count;
+    if (self.movieListArray.count > 0) {
+        return self.movieListArray.count;
+
+    }
+    
+    return 10;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -111,26 +123,39 @@
     
     if (!cell) {
         
-        cell = [MovieListCell createCell];
+        if (self.movieListArray.count>0) {
+            cell = [MovieListCell createCell];
+
+        }else{
+            
+            cell = [MovieListCell createPlaceHolderCell];
+        }
+        
     }
     
-    MovieInfoModel *model = self.movieListArray[indexPath.row];
+    if (self.movieListArray.count > 0) {
+        
+        MovieInfoModel *model = self.movieListArray[indexPath.row];
+        
+        cell.nameLabel.text = model.nm;
+        cell.typeLabel.text = model.cat;
+        cell.iMaxLabel.hidden = !model.imax;
+        cell._3dLabel.text = model.is3d?@"3D":@"2D";
+        cell.showInfoLabel.text = model.showInfo;
+        cell.starLabel.text = [NSString stringWithFormat:@"主演:%@",model.star];
+        cell.scoreLabel.textColor = model.sc>0?RGB(255, 153, 0):[UIColor lightGrayColor];
+        //    cell.scoreLabel.text = model.sc>0?[NSString stringWithFormat:@"%.1f分",model.sc]:@"暂无评分";
+        NSMutableAttributedString *attributedString_score = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.1f分",model.sc]];
+        NSMutableAttributedString *attributedString_none = [[NSMutableAttributedString alloc] initWithString:@"暂未评分"];
+        NSDictionary *attrsDictionary = @{NSFontAttributeName:[UIFont systemFontOfSize:9]};
+        [attributedString_score addAttributes:attrsDictionary range:NSMakeRange(3, 1)];
+        cell.scoreLabel.attributedText = model.sc>0?attributedString_score:attributedString_none;
+        [cell.bliiImageView sd_setImageWithURL:[NSURL URLWithString:model.img]];
+
+    }
     
-    cell.nameLabel.text = model.nm;
-    cell.typeLabel.text = model.cat;
-    cell.iMaxLabel.hidden = !model.imax;
-    cell._3dLabel.text = model.is3d?@"3D":@"2D";
-    cell.showInfoLabel.text = model.showInfo;
-    cell.starLabel.text = [NSString stringWithFormat:@"主演:%@",model.star];
-    cell.scoreLabel.textColor = model.sc>0?RGB(255, 153, 0):[UIColor lightGrayColor];
-//    cell.scoreLabel.text = model.sc>0?[NSString stringWithFormat:@"%.1f分",model.sc]:@"暂无评分";
-    NSMutableAttributedString *attributedString_score = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.1f分",model.sc]];
-    NSMutableAttributedString *attributedString_none = [[NSMutableAttributedString alloc] initWithString:@"暂未评分"];
-    NSDictionary *attrsDictionary = @{NSFontAttributeName:[UIFont systemFontOfSize:9]};
-    [attributedString_score addAttributes:attrsDictionary range:NSMakeRange(3, 1)];
-    cell.scoreLabel.attributedText = model.sc>0?attributedString_score:attributedString_none;
-    [cell.bliiImageView sd_setImageWithURL:[NSURL URLWithString:model.img]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 

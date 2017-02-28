@@ -20,4 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
 
 +(instancetype)createCell;
+
+//创建占位cell
++(instancetype)createPlaceHolderCell;
 @end

@@ -57,6 +57,7 @@
             [button setTitle:model.nm forState:UIControlStateNormal];
             button.titleLabel.font = UIFontMake(14);
             button.contentEdgeInsets = UIEdgeInsetsMake(6, 20, 6, 20);
+            NSLog(@">>>>>>buttonWidth = %f",button.width);
             [self.floatLayoutView addSubview:button];
         }
         

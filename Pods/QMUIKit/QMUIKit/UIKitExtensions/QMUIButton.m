@@ -992,8 +992,13 @@ const CGFloat QMUIGhostButtonCornerRadiusAdjustsBounds = -1;
     if (self.cornerRadius != QMUIGhostButtonCornerRadiusAdjustsBounds) {
         self.layer.cornerRadius = self.cornerRadius;
     } else {
-        self.layer.cornerRadius = flatf(CGRectGetHeight(self.bounds) / 2);
+        self.layer.cornerRadius = flat(CGRectGetHeight(self.bounds) / 2);
     }
+}
+
+- (void)setCornerRadius:(CGFloat)cornerRadius {
+    _cornerRadius = cornerRadius;
+    [self setNeedsLayout];
 }
 
 @end
@@ -1015,7 +1020,9 @@ const CGFloat QMUIGhostButtonCornerRadiusAdjustsBounds = -1;
     QMUIGhostButton *appearance = [QMUIGhostButton appearance];
     appearance.borderWidth = 1;
     appearance.cornerRadius = QMUIGhostButtonCornerRadiusAdjustsBounds;
-    appearance.adjustsImageWithGhostColor = NO;
+    if (IOS_VERSION >= 8.0) {
+        appearance.adjustsImageWithGhostColor = NO;
+    }
 }
 
 @end
@@ -1135,8 +1142,13 @@ const CGFloat QMUIFillButtonCornerRadiusAdjustsBounds = -1;
     if (self.cornerRadius != QMUIFillButtonCornerRadiusAdjustsBounds) {
         self.layer.cornerRadius = self.cornerRadius;
     } else {
-        self.layer.cornerRadius = flatf(CGRectGetHeight(self.bounds) / 2);
+        self.layer.cornerRadius = flat(CGRectGetHeight(self.bounds) / 2);
     }
+}
+
+- (void)setCornerRadius:(CGFloat)cornerRadius {
+    _cornerRadius = cornerRadius;
+    [self setNeedsLayout];
 }
 
 @end
@@ -1157,7 +1169,9 @@ const CGFloat QMUIFillButtonCornerRadiusAdjustsBounds = -1;
 + (void)setDefaultAppearance {
     QMUIFillButton *appearance = [QMUIFillButton appearance];
     appearance.cornerRadius = QMUIFillButtonCornerRadiusAdjustsBounds;
-    appearance.adjustsImageWithTitleTextColor = NO;
+    if (IOS_VERSION >= 8.0) {
+        appearance.adjustsImageWithTitleTextColor = NO;
+    }
 }
 
 @end

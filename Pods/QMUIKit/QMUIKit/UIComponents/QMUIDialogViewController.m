@@ -48,7 +48,7 @@ static QMUIDialogViewController *dialogViewControllerAppearance;
             dialogViewControllerAppearance.footerViewHeight = 48;
             dialogViewControllerAppearance.footerViewBackgroundColor = UIColorWhite;
             
-            dialogViewControllerAppearance.buttonTitleAttributeds = @{NSForegroundColorAttributeName: UIColorBlue, NSKernAttributeName: @2};
+            dialogViewControllerAppearance.buttonTitleAttributes = @{NSForegroundColorAttributeName: UIColorBlue, NSKernAttributeName: @2};
             dialogViewControllerAppearance.buttonHighlightedBackgroundColor = [UIColorBlue colorWithAlphaComponent:.25];
         }
     });
@@ -81,7 +81,7 @@ static QMUIDialogViewController *dialogViewControllerAppearance;
         self.headerViewBackgroundColor = [QMUIDialogViewController appearance].headerViewBackgroundColor;
         self.footerViewHeight = [QMUIDialogViewController appearance].footerViewHeight;
         self.footerViewBackgroundColor = [QMUIDialogViewController appearance].footerViewBackgroundColor;
-        self.buttonTitleAttributeds = [QMUIDialogViewController appearance].buttonTitleAttributeds;
+        self.buttonTitleAttributes = [QMUIDialogViewController appearance].buttonTitleAttributes;
         self.buttonHighlightedBackgroundColor = [QMUIDialogViewController appearance].buttonHighlightedBackgroundColor;
     }
 }
@@ -151,13 +151,13 @@ static QMUIDialogViewController *dialogViewControllerAppearance;
     self.footerView.backgroundColor = footerViewBackgroundColor;
 }
 
-- (void)setButtonTitleAttributeds:(NSDictionary<NSString *,id> *)buttonTitleAttributeds {
-    _buttonTitleAttributeds = buttonTitleAttributeds;
+- (void)setButtonTitleAttributes:(NSDictionary<NSString *,id> *)buttonTitleAttributes {
+    _buttonTitleAttributes = buttonTitleAttributes;
     if (self.cancelButton) {
-        [self.cancelButton setAttributedTitle:[[NSAttributedString alloc] initWithString:[self.cancelButton attributedTitleForState:UIControlStateNormal].string attributes:buttonTitleAttributeds] forState:UIControlStateNormal];
+        [self.cancelButton setAttributedTitle:[[NSAttributedString alloc] initWithString:[self.cancelButton attributedTitleForState:UIControlStateNormal].string attributes:buttonTitleAttributes] forState:UIControlStateNormal];
     }
     if (self.submitButton) {
-        [self.submitButton setAttributedTitle:[[NSAttributedString alloc] initWithString:[self.submitButton attributedTitleForState:UIControlStateNormal].string attributes:buttonTitleAttributeds] forState:UIControlStateNormal];
+        [self.submitButton setAttributedTitle:[[NSAttributedString alloc] initWithString:[self.submitButton attributedTitleForState:UIControlStateNormal].string attributes:buttonTitleAttributes] forState:UIControlStateNormal];
     }
 }
 
@@ -255,7 +255,7 @@ EndIgnoreClangWarning
             button.frame = self.footerView.bounds;
             self.buttonSeparatorLayer.hidden = YES;
         } else {
-            CGFloat buttonWidth = flatf(CGRectGetWidth(self.footerView.bounds) / buttonCount);
+            CGFloat buttonWidth = flat(CGRectGetWidth(self.footerView.bounds) / buttonCount);
             self.cancelButton.frame = CGRectMake(0, 0, buttonWidth, CGRectGetHeight(self.footerView.bounds));
             self.submitButton.frame = CGRectMake(CGRectGetMaxX(self.cancelButton.frame), 0, CGRectGetWidth(self.footerView.bounds) - CGRectGetMaxX(self.cancelButton.frame), CGRectGetHeight(self.footerView.bounds));
             self.buttonSeparatorLayer.hidden = NO;
@@ -316,7 +316,7 @@ EndIgnoreClangWarning
     button.titleLabel.font = UIFontBoldMake(15);
     button.adjustsTitleTintColorAutomatically = YES;
     button.highlightedBackgroundColor = self.buttonHighlightedBackgroundColor;
-    [button setAttributedTitle:[[NSAttributedString alloc] initWithString:buttonText attributes:self.buttonTitleAttributeds] forState:UIControlStateNormal];
+    [button setAttributedTitle:[[NSAttributedString alloc] initWithString:buttonText attributes:self.buttonTitleAttributes] forState:UIControlStateNormal];
     return button;
 }
 
@@ -360,7 +360,7 @@ EndIgnoreClangWarning
     }];
 }
 
-#pragma mark - <QMUIModalPresentationContentViewProtocol>
+#pragma mark - <QMUIModalPresentationContentViewControllerProtocol>
 
 - (CGSize)preferredContentSizeInModalPresentationViewController:(QMUIModalPresentationViewController *)controller limitSize:(CGSize)limitSize {
     if (!self.hasCustomContentView) {
@@ -537,7 +537,7 @@ const NSInteger QMUIDialogSelectionViewControllerSelectedItemIndexNone = -1;
     }
 }
 
-#pragma mark - <QMUIModalPresentationContentViewProtocol>
+#pragma mark - <QMUIModalPresentationContentViewControllerProtocol>
 
 - (CGSize)preferredContentSizeInModalPresentationViewController:(QMUIModalPresentationViewController *)controller limitSize:(CGSize)limitSize {
     CGFloat footerViewHeight = !self.footerView.hidden ? CGRectGetHeight(self.footerView.frame) : 0;
@@ -628,7 +628,7 @@ const NSInteger QMUIDialogSelectionViewControllerSelectedItemIndexNone = -1;
     [self updateSubmitButtonEnables];
 }
 
-#pragma mark - <QMUIModalPresentationContentViewProtocol>
+#pragma mark - <QMUIModalPresentationContentViewControllerProtocol>
 
 - (CGSize)preferredContentSizeInModalPresentationViewController:(QMUIModalPresentationViewController *)controller limitSize:(CGSize)limitSize {
     CGFloat textFieldHeight = 56;

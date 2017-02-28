@@ -32,6 +32,10 @@
 
 - (void)addPerformerInfoWithDatas:(NSArray *)actorsList
 {
+    if (_actorsList) {
+        
+        return;
+    }
     _actorsList = actorsList;
     
     [self.scrollView setContentSize:CGSizeMake(80*actorsList.count+kSpacing, self.scrollView.frame.size.height)];

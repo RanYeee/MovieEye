@@ -13,6 +13,7 @@
 #import <Foundation/Foundation.h>
 #import <QMUIKit/QMUIKit.h>
 #import <MJExtension/MJExtension.h>
+#import <AFNetworking/AFNetworking.h>
 #import "RNAppMacro.h"
 #import "ApiPath.h"
 #import "APIRequestManager.h"
@@ -20,4 +21,10 @@
 #import "UINavigationItem+CustomBackButton.h"
 #import "UIImageView+WebCache.h"
 #import "BaseTableViewCell.h"
+#import "UIView+DDAddition.h"
+#import "BaseViewController.h"
+#import "CustomNavigationController.h"
+#import "CustomTabbarController.h"
+#import "AppTools.h"
+
 #endif /* ME_Prefix_pch */

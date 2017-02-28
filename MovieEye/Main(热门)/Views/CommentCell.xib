@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="129" id="KGk-i7-Jjw" customClass="CommentCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eGh-6H-LmD">
+                        <rect key="frame" x="8" y="12" width="30" height="30"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="9aw-nU-ojQ"/>
+                            <constraint firstAttribute="height" constant="30" id="JZN-m7-vQ4"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2E-el-TBm">
+                        <rect key="frame" x="45" y="12" width="267" height="15"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ag-DR-icl">
+                        <rect key="frame" x="43" y="54" width="267" height="39"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nd7-XJ-SFy">
+                        <rect key="frame" x="43" y="103" width="75" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="UsA-sT-2VV"/>
+                            <constraint firstAttribute="width" constant="75" id="cKj-KU-sIL"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wGJ-tN-OAe" customClass="HCSStarRatingView">
+                        <rect key="frame" x="43" y="30" width="75" height="12"/>
+                        <color key="tintColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="spacing">
+                                <real key="value" value="-1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="YES"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="accurateHalfStars" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEw-Nv-tzg">
+                        <rect key="frame" x="243" y="103" width="75" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" title="556" image="likeUp">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected" image="likeUp_hightLight">
+                            <color key="titleColor" red="0.81176470590000005" green="0.16078431369999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <state key="highlighted" image="likeUp_hightLight">
+                            <color key="titleColor" red="0.81176470590000005" green="0.16078431369999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="likeButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sac-fO-HAa"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbg-gL-vfB">
+                        <rect key="frame" x="43" y="128.5" width="277" height="0.5"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="Sft-to-eQz"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="wGJ-tN-OAe" firstAttribute="height" secondItem="eGh-6H-LmD" secondAttribute="height" multiplier="1/2" constant="-3" id="6bh-JA-xPe"/>
+                    <constraint firstItem="E2E-el-TBm" firstAttribute="leading" secondItem="eGh-6H-LmD" secondAttribute="trailing" constant="7" id="AGg-oJ-dbB"/>
+                    <constraint firstAttribute="bottom" secondItem="Nd7-XJ-SFy" secondAttribute="bottom" constant="5" id="DGS-yV-Wrh"/>
+                    <constraint firstItem="8Ag-DR-icl" firstAttribute="top" secondItem="wGJ-tN-OAe" secondAttribute="bottom" constant="12" id="FeK-hP-6KM"/>
+                    <constraint firstItem="lEw-Nv-tzg" firstAttribute="centerY" secondItem="Nd7-XJ-SFy" secondAttribute="centerY" id="FwM-61-y9q"/>
+                    <constraint firstItem="8Ag-DR-icl" firstAttribute="leading" secondItem="wGJ-tN-OAe" secondAttribute="leading" id="FyZ-jY-Qet"/>
+                    <constraint firstItem="lEw-Nv-tzg" firstAttribute="width" secondItem="Nd7-XJ-SFy" secondAttribute="width" id="JnS-4R-A0O"/>
+                    <constraint firstItem="E2E-el-TBm" firstAttribute="height" secondItem="eGh-6H-LmD" secondAttribute="height" multiplier="1/2" id="LD8-xK-fH3"/>
+                    <constraint firstItem="wGJ-tN-OAe" firstAttribute="leading" secondItem="eGh-6H-LmD" secondAttribute="trailing" constant="5" id="NdO-MI-opA"/>
+                    <constraint firstItem="eGh-6H-LmD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="P0A-o5-dAL"/>
+                    <constraint firstItem="wGJ-tN-OAe" firstAttribute="top" secondItem="E2E-el-TBm" secondAttribute="bottom" constant="3" id="TfA-hD-9lJ"/>
+                    <constraint firstAttribute="trailing" secondItem="lEw-Nv-tzg" secondAttribute="trailing" constant="2" id="U5D-I5-HAI"/>
+                    <constraint firstItem="eGh-6H-LmD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="VdW-Mw-lAu"/>
+                    <constraint firstItem="Nd7-XJ-SFy" firstAttribute="top" secondItem="8Ag-DR-icl" secondAttribute="bottom" constant="10" id="VvX-QO-alm"/>
+                    <constraint firstItem="lEw-Nv-tzg" firstAttribute="height" secondItem="Nd7-XJ-SFy" secondAttribute="height" id="azw-nL-T2F"/>
+                    <constraint firstItem="Nd7-XJ-SFy" firstAttribute="leading" secondItem="wGJ-tN-OAe" secondAttribute="leading" id="bAv-bl-TMA"/>
+                    <constraint firstAttribute="bottom" secondItem="xbg-gL-vfB" secondAttribute="bottom" id="bin-zc-It6"/>
+                    <constraint firstAttribute="trailing" secondItem="8Ag-DR-icl" secondAttribute="trailing" constant="10" id="g8f-gM-Dy2"/>
+                    <constraint firstItem="xbg-gL-vfB" firstAttribute="leading" secondItem="Nd7-XJ-SFy" secondAttribute="leading" id="gQ1-F6-Uuf"/>
+                    <constraint firstAttribute="trailing" secondItem="wGJ-tN-OAe" secondAttribute="trailing" constant="202" id="tEp-Wb-Pq5"/>
+                    <constraint firstItem="E2E-el-TBm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="xl8-1D-b5w"/>
+                    <constraint firstAttribute="trailing" secondItem="E2E-el-TBm" secondAttribute="trailing" constant="8" id="ykQ-d7-slb"/>
+                    <constraint firstAttribute="trailing" secondItem="xbg-gL-vfB" secondAttribute="trailing" id="yko-Aj-X1a"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatarImageView" destination="eGh-6H-LmD" id="pTG-21-f4W"/>
+                <outlet property="contentLabel" destination="8Ag-DR-icl" id="tFG-pg-pbP"/>
+                <outlet property="likeButton" destination="lEw-Nv-tzg" id="1HL-vV-gSN"/>
+                <outlet property="separatorLine" destination="xbg-gL-vfB" id="226-jP-GwP"/>
+                <outlet property="starView" destination="wGJ-tN-OAe" id="J3q-Gh-TwJ"/>
+                <outlet property="timeLabel" destination="Nd7-XJ-SFy" id="E39-lq-W0s"/>
+                <outlet property="userNameLabel" destination="E2E-el-TBm" id="qrt-ag-Jt0"/>
+            </connections>
+            <point key="canvasLocation" x="-265" y="-165.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="likeUp" width="24" height="24"/>
+        <image name="likeUp_hightLight" width="24" height="24"/>
+    </resources>
+</document>

@@ -12,6 +12,7 @@
 #import "QMUIHelper.h"
 #import "CALayer+QMUI.h"
 #import "UIColor+QMUI.h"
+#import "NSObject+QMUI.h"
 
 @interface UIView ()
 
@@ -78,6 +79,60 @@
 @end
 
 
+@implementation UIView (Runtime)
+
+- (BOOL)qmui_hasOverrideUIKitMethod:(SEL)selector {
+    // 排序依照 Xcode Interface Builder 里的控件排序，但保证子类在父类前面
+    NSMutableArray<Class> *viewSuperclasses = [[NSMutableArray alloc] initWithObjects:
+                                               [UILabel class],
+                                               [UIButton class],
+                                               [UISegmentedControl class],
+                                               [UITextField class],
+                                               [UISlider class],
+                                               [UISwitch class],
+                                               [UIActivityIndicatorView class],
+                                               [UIProgressView class],
+                                               [UIPageControl class],
+                                               [UIStepper class],
+                                               [UITableView class],
+                                               [UITableViewCell class],
+                                               [UIImageView class],
+                                               [UICollectionView class],
+                                               [UICollectionViewCell class],
+                                               [UICollectionReusableView class],
+                                               [UITextView class],
+                                               [UIScrollView class],
+                                               [UIDatePicker class],
+                                               [UIPickerView class],
+                                               [UIWebView class],
+                                               [UIWindow class],
+                                               [UINavigationBar class],
+                                               [UIToolbar class],
+                                               [UITabBar class],
+                                               [UISearchBar class],
+                                               [UIControl class],
+                                               [UIView class],
+                                               nil];
+    
+    if (NSClassFromString(@"UIStackView")) {
+        [viewSuperclasses addObject:[UIStackView class]];
+    }
+    if (NSClassFromString(@"UIVisualEffectView")) {
+        [viewSuperclasses addObject:[UIVisualEffectView class]];
+    }
+    
+    for (NSInteger i = 0, l = viewSuperclasses.count; i < l; i++) {
+        Class superclass = viewSuperclasses[i];
+        if ([self qmui_hasOverrideMethod:selector ofSuperclass:superclass]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+@end
+
+
 @implementation UIView (QMUI_Debug)
 
 + (void)load {
@@ -100,6 +155,9 @@ static char kAssociatedObjectKey_needsDifferentDebugColor;
 static char kAssociatedObjectKey_shouldShowDebugColor;
 - (void)setQmui_shouldShowDebugColor:(BOOL)qmui_shouldShowDebugColor {
     objc_setAssociatedObject(self, &kAssociatedObjectKey_shouldShowDebugColor, @(qmui_shouldShowDebugColor), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (qmui_shouldShowDebugColor) {
+        [self setNeedsLayout];
+    }
 }
 - (BOOL)qmui_shouldShowDebugColor {
     BOOL flag = [objc_getAssociatedObject(self, &kAssociatedObjectKey_shouldShowDebugColor) boolValue];
@@ -233,7 +291,10 @@ static char kAssociatedObjectKey_borderLayer;
     
     if (!self.qmui_borderLayer) {
         self.qmui_borderLayer = [CAShapeLayer layer];
+        // 移除属于CALayer部分的属性的隐性动画
         [self.qmui_borderLayer qmui_removeDefaultAnimations];
+        // 移除属于CAShapeLayer部分的属性的隐性动画
+        [self removeDefautShapeLayerAnimations];
         [self.layer addSublayer:self.qmui_borderLayer];
         
         // 设置默认值
@@ -274,6 +335,19 @@ static char kAssociatedObjectKey_borderLayer;
     }
     
     self.qmui_borderLayer.path = path.CGPath;
+}
+
+// 移除qmui_borderLayer属于CAShapeLayer部分的属性的隐性动画
+- (void)removeDefautShapeLayerAnimations {
+    if (!self.qmui_borderLayer) {
+        return;
+    }
+    NSMutableDictionary *dict = [self.qmui_borderLayer.actions mutableCopy];
+    dict[@"strokeColor"] = [NSNull null];
+    dict[@"lineWidth"] = [NSNull null];
+    dict[@"lineDashPhase"] = [NSNull null];
+    dict[@"path"] = [NSNull null];
+    self.qmui_borderLayer.actions = [NSDictionary dictionaryWithDictionary:dict];
 }
 
 @end

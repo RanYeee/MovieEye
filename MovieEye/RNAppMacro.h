@@ -40,7 +40,7 @@
 #define STATUSBAR_HEIGHT      [[UIApplication sharedApplication] statusBarFrame].size.height
 #define NAVBAR_HEIGHT         (44.f + ((SYSTEM_VERSION >= 7) ? STATUSBAR_HEIGHT : 0))
 
-
+#define CustomRedColor        [UIColor colorWithRed:0.93 green:0.27 blue:0.25 alpha:1.00]
 
 // 创建图片
 

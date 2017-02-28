@@ -4,9 +4,9 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -145,6 +145,98 @@
                 <outlet property="typeLabel" destination="8bw-JQ-uJa" id="d0N-wO-Dch"/>
             </connections>
             <point key="canvasLocation" x="34" y="21"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="120" id="spY-SU-UHx" customClass="MovieListCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="spY-SU-UHx" id="uJh-tt-bTp">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="llo-ro-mCX">
+                        <rect key="frame" x="14" y="14" width="65" height="90"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="65" id="KxK-cc-UsP"/>
+                            <constraint firstAttribute="height" constant="90" id="luB-y2-t13"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2F-he-Qhn">
+                        <rect key="frame" x="91" y="14" width="221" height="20"/>
+                        <color key="backgroundColor" red="0.96470588235294119" green="0.96862745098039216" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="aYC-Tv-Qs8"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="qmui_borderWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jv2-fg-jVN" customClass="QMUILabel">
+                        <rect key="frame" x="91" y="38" width="101" height="20"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="qmui_borderWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="canPerformCopyAction" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yD-eJ-rZg">
+                        <rect key="frame" x="91" y="62" width="147.5" height="20"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQm-f9-pm5">
+                        <rect key="frame" x="91" y="86" width="74" height="20"/>
+                        <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="m2F-he-Qhn" firstAttribute="leading" secondItem="llo-ro-mCX" secondAttribute="trailing" constant="12" id="6Tb-OM-Fht"/>
+                    <constraint firstItem="FQm-f9-pm5" firstAttribute="leading" secondItem="6yD-eJ-rZg" secondAttribute="leading" id="941-8W-iy7"/>
+                    <constraint firstItem="6yD-eJ-rZg" firstAttribute="height" secondItem="m2F-he-Qhn" secondAttribute="height" id="C26-ir-MyF"/>
+                    <constraint firstItem="6yD-eJ-rZg" firstAttribute="top" secondItem="jv2-fg-jVN" secondAttribute="bottom" constant="4" id="Fkd-9Z-NgI"/>
+                    <constraint firstItem="FQm-f9-pm5" firstAttribute="height" secondItem="6yD-eJ-rZg" secondAttribute="height" id="Mpg-hW-rjh"/>
+                    <constraint firstItem="m2F-he-Qhn" firstAttribute="top" secondItem="llo-ro-mCX" secondAttribute="top" id="NId-uO-ZEu"/>
+                    <constraint firstItem="FQm-f9-pm5" firstAttribute="top" secondItem="6yD-eJ-rZg" secondAttribute="bottom" constant="4" id="OqT-5I-YFh"/>
+                    <constraint firstItem="llo-ro-mCX" firstAttribute="leading" secondItem="uJh-tt-bTp" secondAttribute="leading" constant="14" id="elW-dY-jdo"/>
+                    <constraint firstItem="jv2-fg-jVN" firstAttribute="height" secondItem="m2F-he-Qhn" secondAttribute="height" id="evm-GH-JQF"/>
+                    <constraint firstItem="6yD-eJ-rZg" firstAttribute="width" secondItem="m2F-he-Qhn" secondAttribute="width" multiplier="2/3" id="fae-PL-eVv"/>
+                    <constraint firstAttribute="trailing" secondItem="m2F-he-Qhn" secondAttribute="trailing" constant="8" id="gLv-fV-yOF"/>
+                    <constraint firstItem="llo-ro-mCX" firstAttribute="centerY" secondItem="uJh-tt-bTp" secondAttribute="centerY" id="mRN-fR-cFv"/>
+                    <constraint firstItem="FQm-f9-pm5" firstAttribute="width" secondItem="6yD-eJ-rZg" secondAttribute="width" multiplier="1/2" id="md3-8D-0LG"/>
+                    <constraint firstItem="6yD-eJ-rZg" firstAttribute="leading" secondItem="m2F-he-Qhn" secondAttribute="leading" id="stM-z5-LUe"/>
+                    <constraint firstItem="jv2-fg-jVN" firstAttribute="width" secondItem="m2F-he-Qhn" secondAttribute="width" multiplier="1/2" constant="-9.5" id="svt-N3-rhm"/>
+                    <constraint firstItem="jv2-fg-jVN" firstAttribute="top" secondItem="m2F-he-Qhn" secondAttribute="bottom" constant="4" id="u63-8x-E9X"/>
+                    <constraint firstItem="jv2-fg-jVN" firstAttribute="leading" secondItem="m2F-he-Qhn" secondAttribute="leading" id="wHL-s2-y5E"/>
+                </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="number" keyPath="qmui_borderWidth">
+                        <real key="value" value="0.0"/>
+                    </userDefinedRuntimeAttribute>
+                </userDefinedRuntimeAttributes>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bliiImageView" destination="llo-ro-mCX" id="NWy-cS-meW"/>
+                <outlet property="nameLabel" destination="m2F-he-Qhn" id="SOl-np-LrG"/>
+                <outlet property="showInfoLabel" destination="FQm-f9-pm5" id="lpJ-YP-VtN"/>
+                <outlet property="starLabel" destination="6yD-eJ-rZg" id="yA4-FO-yXJ"/>
+                <outlet property="typeLabel" destination="jv2-fg-jVN" id="XOe-u3-xFR"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="270"/>
         </tableViewCell>
     </objects>
 </document>

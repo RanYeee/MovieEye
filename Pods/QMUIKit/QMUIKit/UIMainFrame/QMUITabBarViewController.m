@@ -8,6 +8,7 @@
 
 #import "QMUITabBarViewController.h"
 #import "QMUIConfiguration.h"
+#import "UIViewController+QMUI.h"
 
 @implementation QMUITabBarViewController
 
@@ -32,16 +33,12 @@
 
 #pragma mark - 屏幕旋转
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return [self.selectedViewController respondsToSelector:@selector(shouldAutorotateToInterfaceOrientation:)] ? [self.selectedViewController shouldAutorotateToInterfaceOrientation:toInterfaceOrientation] : toInterfaceOrientation == UIInterfaceOrientationPortrait;
-}
-
 - (BOOL)shouldAutorotate {
-    return [self.selectedViewController respondsToSelector:@selector(shouldAutorotate)] ? [self.selectedViewController shouldAutorotate] : NO;
+    return [self.selectedViewController qmui_hasOverrideUIKitMethod:_cmd] ? [self.selectedViewController shouldAutorotate] : YES;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return [self.selectedViewController respondsToSelector:@selector(supportedInterfaceOrientations)] ? [self.selectedViewController supportedInterfaceOrientations] : UIInterfaceOrientationMaskPortrait;
+    return [self.selectedViewController qmui_hasOverrideUIKitMethod:_cmd] ? [self.selectedViewController supportedInterfaceOrientations] : SupportedOrientationMask;
 }
 
 @end

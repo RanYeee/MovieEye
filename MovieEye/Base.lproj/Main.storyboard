@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,7 +52,7 @@
         <!--热门电影-->
         <scene sceneID="jwh-7M-4Vl">
             <objects>
-                <navigationController id="VVn-vl-x1p" customClass="QMUINavigationController" sceneMemberID="viewController">
+                <navigationController id="VVn-vl-x1p" customClass="CustomNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="热门电影" image="tabbarItem_movie" selectedImage="tabbarItem_movie" id="3m1-pf-Zcq"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6lx-6h-uOu">
@@ -89,10 +88,10 @@
             </objects>
             <point key="canvasLocation" x="777" y="600"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Custom Tabbar Controller-->
         <scene sceneID="hc4-Fk-Y4w">
             <objects>
-                <tabBarController id="aVb-kU-xAj" sceneMemberID="viewController">
+                <tabBarController id="aVb-kU-xAj" customClass="CustomTabbarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Npl-H6-xZ2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

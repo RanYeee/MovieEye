@@ -12,4 +12,6 @@
 
 +(instancetype)createFromXIB;
 
++(instancetype)createFromXIBInTableView:(UITableView *)tableView WithIndentifier:(NSString *)identifier;
+
 @end
