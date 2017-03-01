@@ -132,18 +132,26 @@
 {
     NSInteger rowCount = 1;
     CGFloat tmpW = 0;
-    
-    for (NSString *text in tagArray) {
+    for (int i = 0; i<tagArray.count; i++) {
         
+        NSLog(@">> %d",i);
         //计算文字的size
         NSDictionary *attrs = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:15]};
-        CGSize size=[text sizeWithAttributes:attrs];
+        CGSize size=[tagArray[i] sizeWithAttributes:attrs];
         tmpW+=kSpacing+size.width;
-        if (tmpW>SCREEN_WIDTH) {
-            
-            tmpW = 0;
+
+        if (tmpW>=SCREEN_WIDTH){
             rowCount+=1;
+            tmpW = 0;
+            NSLog(@"- - - ");
         }
+
+    }
+
+    NSLog(@"rowCount>>> %d",rowCount);
+    if (rowCount>2) {
+        
+        rowCount+=1;
     }
     
     return rowCount*(kButtonH+kSpacing);

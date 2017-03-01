@@ -19,9 +19,14 @@
 @property(nonatomic, strong) QMUIFloatLayoutView *floatLayoutView;
 @property (nonatomic,strong) QMUITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *hotSearchArray;
+@property (nonatomic,strong) NSMutableArray <NSString *>*hotSearchNameArray;
+
 @property (nonatomic,strong) QMUISearchBar *searchBar;
 
 @property (nonatomic,strong) NSMutableArray *keywordArray;
+
+@property (nonatomic, assign) NSInteger inputCount;     //用户输入次数，用来控制延迟搜索请求
+
 @end
 
 @implementation MovieSearchController
@@ -52,6 +57,17 @@
     }
     
     return _hotSearchArray;
+}
+
+-(NSMutableArray<NSString *> *)hotSearchNameArray
+{
+    if (!_hotSearchNameArray) {
+        
+        _hotSearchNameArray = [NSMutableArray array];
+        
+    }
+    
+    return _hotSearchNameArray;
 }
 
 - (NSMutableArray *)keywordArray
@@ -88,6 +104,7 @@
             
             [self.hotSearchArray addObject:[HotSearchModel mj_objectWithKeyValues:dict]];
             
+            [self.hotSearchNameArray addObject:dict[@"nm"]];
         }
 
         [self.tableView reloadData];
@@ -102,7 +119,40 @@
 
 }
 
+//搜索
+- (void)searchWithInputCount:(NSNumber *)inputCount{
+    
+    if (self.inputCount == [inputCount integerValue]) {
+        
+        NSString *apiString = API_MOVIE_SEARCH(@"10", self.searchBar.text);
+        
+        
+        [[APIRequestManager shareInstance]getHTTPPath:apiString success:^(id request) {
+
+            
+            
+        
+        } failure:^(NSError *error) {
+            
+        }];
+
+    }
+    
+    
+}
+
 #pragma mark - searchBar delegate
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    
+    self.inputCount ++;
+    
+    [self performSelector:@selector(searchWithInputCount:) withObject:@(self.inputCount) afterDelay:1.0f];
+
+    
+}
+
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
@@ -191,7 +241,9 @@
     
     HotSearchCell *cell = [[HotSearchCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cellID"];
     
-    cell.hotSearchArray = self.hotSearchArray;
+    cell.customTitleLabel.text = @"热门搜索";
+    
+    [cell createTagButtonWithTagArray:self.hotSearchNameArray];
     
     return cell;
 }
@@ -206,14 +258,14 @@
             return 44;
             
         }else{
-            
-            return 160;
+            return [HotSearchCell rowHeightWithTagArray:self.hotSearchNameArray]+44;
         }
     
     }
     
-    return 160;
+    return [HotSearchCell rowHeightWithTagArray:self.hotSearchNameArray]+44;
 }
+
 
 -(void)searchHistoryCell:(SearchHistoryCell *)cell deleteCellAtIndex:(NSIndexPath *)indexPath
 {

@@ -12,7 +12,7 @@
 #import "CommentCell.h"
 #import <MJRefresh/MJRefresh.h>
 #define kPageLimit @"6"  //每页个数
-#define kTestArray @[@"全部",@"好评11234",@"差评1120",@"购票99877",@"认证作者12",@"同城980"]
+#define kTestArray @[@"全部",@"好评11234",@"差评1120",@"购票99877",@"认证作者12",@"全部",@"好评11234",@"差评1120",@"购票99877",@"认证作者12"]
 static NSString *tagCellID = @"tagCellId";
 static NSString *hcmtsCellID = @"hcmtsCellId";
 @interface ShotCommentController ()<UITableViewDelegate,UITableViewDataSource,CommentTagCellDelegate>
@@ -37,6 +37,8 @@ static NSString *hcmtsCellID = @"hcmtsCellId";
     [self loadDataWithMovieId:self.movieId Complete:^{
         
         _currentTag = @"0";
+        
+        _currentOffset = 0;
         
         self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         
@@ -128,28 +130,16 @@ static NSString *hcmtsCellID = @"hcmtsCellId";
 //上拉刷新数据
 - (void)footerFefresh
 {
-    _currentOffset +=1;
+    _currentOffset +=7;
     
     __weak typeof(self) weakSelf = self;
 
     [self loadMoreCommentWithOffSet:_currentOffset Tag:_currentTag Complete:^(id comment) {
        
         
-        if ([_currentTag integerValue]==0) {
-            
-            //重新加载热门评论
-            
-            [weakSelf.hcmtsArray addObjectsFromArray:[CommentModel mj_objectArrayWithKeyValuesArray:comment[@"hcmts"]]];
-            
-        }
-        
-        
-        //重新加载组最评论
+        //加载组最评论
         
         [weakSelf.cmtsArray addObjectsFromArray: [CommentModel mj_objectArrayWithKeyValuesArray:comment[@"cmts"]]];
-        
-        //重置offset
-        _currentOffset = 0;
         
         //刷新tableview
         
@@ -205,6 +195,8 @@ static NSString *hcmtsCellID = @"hcmtsCellId";
             
             [self.tagTitleArray addObject:string];
         }
+        
+        [self.tagTitleArray addObjectsFromArray:kTestArray];
         
         [self loadMoreCommentWithOffSet:1 Tag:@"0" Complete:^(id comment) {
            //加载所有热门评论

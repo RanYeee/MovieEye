@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "HotSearchModel.h"
-@interface HotSearchCell : UITableViewCell
+#import "CommentTagCell.h"
+@interface HotSearchCell : CommentTagCell
 
 @property(nonatomic, strong) QMUIFloatLayoutView *floatLayoutView;
 
