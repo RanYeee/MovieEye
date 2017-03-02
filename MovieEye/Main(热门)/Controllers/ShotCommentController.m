@@ -269,11 +269,9 @@ static NSString *hcmtsCellID = @"hcmtsCellId";
         
         CommentTagCell *cell = [tableView dequeueReusableCellWithIdentifier:tagCellID];
         
-        if (!cell) {
-//            cell = [[CommentTagCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tagCellID];
-        }
+        cell.buttonStyle = TagCellSelectedButtonStyle;
         
-        cell.customTitleLabel.text = [NSString stringWithFormat:@"所有评论(%d)",self.allCommentCount];
+        cell.customTitleLabel.text = [NSString stringWithFormat:@"所有评论(%ld)",(long)self.allCommentCount];
         
         [cell createTagButtonWithTagArray:self.tagTitleArray];
         
@@ -292,6 +290,7 @@ static NSString *hcmtsCellID = @"hcmtsCellId";
             cell = [CommentCell createFromXIB];
             
         }
+        
         CommentModel *model = nil;
 
         if ([_currentTag integerValue]>0) {

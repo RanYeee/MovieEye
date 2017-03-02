@@ -80,8 +80,12 @@
         [tagButton setTitle:obj forState:UIControlStateNormal];
         [tagButton setTitleColor:CustomRedColor forState:UIControlStateNormal];
         [tagButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [tagButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+
         [tagButton setBackgroundImage:[UIImage qmui_imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
         [tagButton setBackgroundImage:[UIImage qmui_imageWithColor:CustomRedColor] forState:UIControlStateSelected];
+        [tagButton setBackgroundImage:[UIImage qmui_imageWithColor:CustomRedColor] forState:UIControlStateHighlighted];
+
         
         if (_buttonStyle == TagCellDefaultButtonStyle) {
          //
@@ -147,7 +151,6 @@
 
     }
 
-    NSLog(@"rowCount>>> %d",rowCount);
     
     if (IS_IPHONE_5) {
         
@@ -172,21 +175,28 @@
 
 - (void)tagButtonClick:(UIButton *)sender
 {
-    if (_currentSelectButton == sender) {
+
+    if (_buttonStyle == TagCellSelectedButtonStyle) {
         
-        return;
+        if (_currentSelectButton == sender) {
+            
+            return;
+        }
+        
+        _currentSelectButton.selected = !_currentSelectButton.isSelected;
+
+        sender.selected = !sender.isSelected;
+
+        _currentSelectButton = sender;
+
     }
     
-    _currentSelectButton.selected = !_currentSelectButton.isSelected;
-    
-    sender.selected = !sender.isSelected;
     
     if (self.delegate) {
  
         [self.delegate commentTagCell:self didClickTagAtIndex:sender.tag];
     }
     
-    _currentSelectButton = sender;
 
 }
 

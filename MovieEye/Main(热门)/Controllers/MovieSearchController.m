@@ -10,16 +10,21 @@
 #import "HotSearchCell.h"
 #import "HotSearchModel.h"
 #import "SearchHistoryCell.h"
-
+#import "MovieInfoModel.h"
+#import "MovieListCell.h"
 #define kHistorySearchArray @"kHistorySearchArray"
 
 #define kkeyWordSaveNum  4 //搜索记录保存个数
 
 @interface MovieSearchController ()<QMUITableViewDelegate,QMUITableViewDataSource,UISearchBarDelegate,SearchHistoryCellDelegate>
+{
+    BOOL _isInSearch; //是否在搜索过程中
+}
 @property(nonatomic, strong) QMUIFloatLayoutView *floatLayoutView;
 @property (nonatomic,strong) QMUITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *hotSearchArray;
 @property (nonatomic,strong) NSMutableArray <NSString *>*hotSearchNameArray;
+@property (nonatomic,strong) NSMutableArray <MovieInfoModel *>*searchResultArray;
 
 @property (nonatomic,strong) QMUISearchBar *searchBar;
 
@@ -42,11 +47,27 @@
 //    self.tableView.separatorColor = [UIColor clearColor];
     self.searchBar = [[QMUISearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
     self.searchBar.delegate = self;
+    self.searchBar.returnKeyType = UIReturnKeyDone;
     //    [self.searchBar becomeFirstResponder];
     self.tableView.tableHeaderView = self.searchBar;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(resignFirstResponse)];
     [self.tableView addGestureRecognizer:tapGesture];
     [self getHotSearchArray];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
+    NSArray *keyWordArray = [[NSUserDefaults standardUserDefaults]objectForKey:kHistorySearchArray];
+    
+    if (keyWordArray) {
+        
+        [self.keywordArray addObjectsFromArray:keyWordArray];
+        
+    }
+    
 }
 
 - (NSMutableArray *)hotSearchArray
@@ -57,6 +78,16 @@
     }
     
     return _hotSearchArray;
+}
+
+-(NSMutableArray<MovieInfoModel *> *)searchResultArray
+{
+    if (!_searchResultArray) {
+        _searchResultArray = [NSMutableArray array];
+        
+    }
+    
+    return _searchResultArray;
 }
 
 -(NSMutableArray<NSString *> *)hotSearchNameArray
@@ -73,17 +104,9 @@
 - (NSMutableArray *)keywordArray
 {
     if (!_keywordArray) {
+     
         
-        NSArray *keyWordArray = [[NSUserDefaults standardUserDefaults]objectForKey:kHistorySearchArray];
-        
-        if (keyWordArray) {
-            
-            _keywordArray = [NSMutableArray arrayWithArray:keyWordArray];
-            
-        }else{
-            
-            _keywordArray = [NSMutableArray array];
-        }
+        _keywordArray = [NSMutableArray array];
         
     }
     
@@ -122,15 +145,44 @@
 //搜索
 - (void)searchWithInputCount:(NSNumber *)inputCount{
     
+
+    
+    
     if (self.inputCount == [inputCount integerValue]) {
+        
+ 
         
         NSString *apiString = API_MOVIE_SEARCH(@"10", self.searchBar.text);
         
         
         [[APIRequestManager shareInstance]getHTTPPath:apiString success:^(id request) {
 
+            _isInSearch = YES;
+            //保存搜索记录
             
+            if (self.keywordArray.count<kkeyWordSaveNum) {
+                
+                [self.keywordArray insertObject:self.searchBar.text atIndex:0];
+                
+                [[NSUserDefaults standardUserDefaults]setObject:self.keywordArray forKey:kHistorySearchArray];
+                
+                [[NSUserDefaults standardUserDefaults]synchronize];
+                
+            }
             
+            NSArray *datas = request[@"data"][0][@"list"];
+            [NSObject resolveDict:datas[0]];
+            NSLog(@"datas = %@",datas);
+//            [self.searchResultArray removeAllObjects];
+//            
+//            if (datas.count>0) {
+//                
+//                [self.searchResultArray addObjectsFromArray:[MovieInfoModel mj_keyValuesArrayWithObjectArray:datas]];
+//
+//            }
+//            
+//            [self.tableView reloadData];
+//            
         
         } failure:^(NSError *error) {
             
@@ -153,44 +205,35 @@
     
 }
 
-
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
- 
     [searchBar resignFirstResponder];
-    
-    //保存搜索记录
-    
-    if (self.keywordArray.count<kkeyWordSaveNum) {
-        
-        [self.keywordArray insertObject:searchBar.text atIndex:0];
-        
-        [[NSUserDefaults standardUserDefaults]setObject:self.keywordArray forKey:kHistorySearchArray];
-        
-        [[NSUserDefaults standardUserDefaults]synchronize];
-
-    }
-    
-    NSString *apiString = API_MOVIE_SEARCH(@"10", searchBar.text);
-        
-    [[APIRequestManager shareInstance]getHTTPPath:apiString success:^(id request) {
-        NSLog(@">>>>>>%@",request);
-    } failure:^(NSError *error) {
-        
-    }];
-    
 }
+
 
 #pragma mark - TableView delegate & Datasource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.keywordArray.count>0) {
+    if (self.searchResultArray.count>0) {
         
-        return self.keywordArray.count +1;
+        return self.searchResultArray.count;
+        
+    }else{
+        
+        if (self.keywordArray.count>0) {
+            
+            return self.keywordArray.count +1;
+            
+        }else{
+            
+            return 1;
+
+        }
     }
     
-    return 1;
+
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -203,34 +246,46 @@
 
     UITableViewCell *cell = nil;
     
-    if (self.keywordArray.count>0) {
+    if (_isInSearch) {
+        //正在搜索
+        MovieListCell *movieCell = [MovieListCell createCell];
+        movieCell.model = self.searchResultArray[indexPath.row];
+        cell = movieCell;
         
-        if (indexPath.row < self.keywordArray.count) {
+    }else{
+        
+        if (self.keywordArray.count>0) {
             
-            //历史搜索的cell
-            
-            SearchHistoryCell *historyCell = [SearchHistoryCell createFromXIB];
-            
-            historyCell.indexPath = indexPath;
-            
-            historyCell.delegate = self;
-            
-            historyCell.historyKeyLabel.text = self.keywordArray[indexPath.row];
-            
-            cell = historyCell;
+            if (indexPath.row < self.keywordArray.count) {
+                
+                //历史搜索的cell
+                
+                SearchHistoryCell *historyCell = [SearchHistoryCell createFromXIB];
+                
+                historyCell.indexPath = indexPath;
+                
+                historyCell.delegate = self;
+                
+                historyCell.historyKeyLabel.text = self.keywordArray[indexPath.row];
+                
+                cell = historyCell;
+                
+            }else{
+                
+                cell = [self tableviewCell_CreateHotSearchCellAtIndexPath:indexPath];
+            }
             
         }else{
             
             cell = [self tableviewCell_CreateHotSearchCellAtIndexPath:indexPath];
+            
         }
         
-    }else{
-        
-        cell = [self tableviewCell_CreateHotSearchCellAtIndexPath:indexPath];
 
+        
     }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
 
     return cell;
@@ -271,13 +326,20 @@
 
 -(void)searchHistoryCell:(SearchHistoryCell *)cell deleteCellAtIndex:(NSIndexPath *)indexPath
 {
-    [self.keywordArray removeObjectAtIndex:indexPath.row];
+
+
+    [self.keywordArray removeObject:cell.historyKeyLabel.text];
+    NSLog(@">>>keywordArray = %@",self.keywordArray);
+
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     
     [[NSUserDefaults standardUserDefaults]setObject:self.keywordArray forKey:kHistorySearchArray];
     
     [[NSUserDefaults standardUserDefaults]synchronize];
 
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+   
 }
 
 

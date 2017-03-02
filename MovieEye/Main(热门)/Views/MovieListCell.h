@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MovieInfoModel.h"
 @interface MovieListCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *bliiImageView;
 @property (weak, nonatomic) IBOutlet QMUILabel *nameLabel;
@@ -18,6 +18,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *starLabel;
 @property (strong, nonatomic) IBOutlet UILabel *showInfoLabel;
 @property (strong, nonatomic) IBOutlet UILabel *scoreLabel;
+
+@property(nonatomic, strong) MovieInfoModel *model;
 
 +(instancetype)createCell;
 
