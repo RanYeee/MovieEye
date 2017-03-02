@@ -14,6 +14,11 @@
 
 @end
 
+typedef enum : NSUInteger {
+    TagCellDefaultButtonStyle,
+    TagCellSelectedButtonStyle
+} TagCellButtonStyle;
+
 @interface CommentTagCell : UITableViewCell
 
 
@@ -31,6 +36,8 @@
 @property (nonatomic ,strong) UILabel *customTitleLabel;
 
 @property (nonatomic ,assign) NSInteger currentSelectIndex;
+
+@property (nonatomic ,assign) TagCellButtonStyle buttonStyle;
 
 @property (nonatomic ,weak) id <CommentTagCellDelegate> delegate;
 

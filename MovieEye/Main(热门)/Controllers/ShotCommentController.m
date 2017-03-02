@@ -195,9 +195,7 @@ static NSString *hcmtsCellID = @"hcmtsCellId";
             
             [self.tagTitleArray addObject:string];
         }
-        
-        [self.tagTitleArray addObjectsFromArray:kTestArray];
-        
+                
         [self loadMoreCommentWithOffSet:1 Tag:@"0" Complete:^(id comment) {
            //加载所有热门评论
             
