@@ -60,4 +60,9 @@
 #define kStatusBarStyleDefault [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault]
 
 #define kStatusBarStyleLightContent [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent]
-
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_PLUS (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)

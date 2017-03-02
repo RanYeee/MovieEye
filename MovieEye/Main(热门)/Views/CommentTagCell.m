@@ -134,7 +134,6 @@
     CGFloat tmpW = 0;
     for (int i = 0; i<tagArray.count; i++) {
         
-        NSLog(@">> %d",i);
         //计算文字的size
         NSDictionary *attrs = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:15]};
         CGSize size=[tagArray[i] sizeWithAttributes:attrs];
@@ -143,16 +142,27 @@
         if (tmpW>=SCREEN_WIDTH){
             rowCount+=1;
             tmpW = 0;
-            NSLog(@"- - - ");
         }
 
     }
 
     NSLog(@"rowCount>>> %d",rowCount);
-    if (rowCount>2) {
+    
+    if (IS_IPHONE_5) {
         
-        rowCount+=1;
+        if (rowCount>2) {
+            
+            rowCount+=1;
+        }
+        
+    }else if (IS_IPHONE_6 || IS_IPHONE_PLUS){
+        
+        if (rowCount>3) {
+            
+            rowCount+=1;
+        }
     }
+   
     
     return rowCount*(kButtonH+kSpacing);
     
