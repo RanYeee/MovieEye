@@ -243,6 +243,8 @@
     
     cell.customTitleLabel.text = @"热门搜索";
     
+    cell.currentSelectIndex = -1;
+    
     [cell createTagButtonWithTagArray:self.hotSearchNameArray];
     
     return cell;

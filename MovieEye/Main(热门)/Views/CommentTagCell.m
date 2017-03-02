@@ -83,7 +83,7 @@
         [tagButton setBackgroundImage:[UIImage qmui_imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
         [tagButton setBackgroundImage:[UIImage qmui_imageWithColor:CustomRedColor] forState:UIControlStateSelected];
         
-        if (self.currentSelectIndex>0) {
+        if (_buttonStyle == TagCellDefaultButtonStyle) {
          //
             if (idx == self.currentSelectIndex) {
                 
@@ -91,6 +91,7 @@
                 _currentSelectButton = tagButton;
 
             }
+            
         }else{
             
             if (idx == 0) {
