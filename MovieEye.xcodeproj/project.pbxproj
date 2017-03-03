@@ -31,6 +31,9 @@
 		293045871E4C567600738F71 /* MovieInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 293045861E4C567600738F71 /* MovieInfoModel.m */; };
 		295210941E6902F100D0FF1A /* CinemaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 295210931E6902F100D0FF1A /* CinemaModel.m */; };
 		295210971E6904CF00D0FF1A /* SearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 295210961E6904CF00D0FF1A /* SearchResultModel.m */; };
+		2952109F1E69682200D0FF1A /* MovieCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2952109E1E69682200D0FF1A /* MovieCollectionView.m */; };
+		295210A31E696CAD00D0FF1A /* MovieCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 295210A11E696CAD00D0FF1A /* MovieCollectionCell.m */; };
+		295210A41E696CAD00D0FF1A /* MovieCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 295210A21E696CAD00D0FF1A /* MovieCollectionCell.xib */; };
 		297112091E4B108300D52C91 /* APIRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 297112081E4B108300D52C91 /* APIRequestManager.m */; };
 		297112501E4C127D00D52C91 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 297112301E4C127D00D52C91 /* MKAnnotationView+WebCache.m */; };
 		297112511E4C127D00D52C91 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 297112321E4C127D00D52C91 /* NSData+ImageContentType.m */; };
@@ -143,6 +146,11 @@
 		295210931E6902F100D0FF1A /* CinemaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinemaModel.m; sourceTree = "<group>"; };
 		295210951E6904CF00D0FF1A /* SearchResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultModel.h; sourceTree = "<group>"; };
 		295210961E6904CF00D0FF1A /* SearchResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultModel.m; sourceTree = "<group>"; };
+		2952109D1E69682200D0FF1A /* MovieCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCollectionView.h; sourceTree = "<group>"; };
+		2952109E1E69682200D0FF1A /* MovieCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieCollectionView.m; sourceTree = "<group>"; };
+		295210A01E696CAD00D0FF1A /* MovieCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCollectionCell.h; sourceTree = "<group>"; };
+		295210A11E696CAD00D0FF1A /* MovieCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieCollectionCell.m; sourceTree = "<group>"; };
+		295210A21E696CAD00D0FF1A /* MovieCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieCollectionCell.xib; sourceTree = "<group>"; };
 		297112031E4B076500D52C91 /* ME-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ME-Prefix.pch"; sourceTree = "<group>"; };
 		297112041E4B07FC00D52C91 /* RNAppMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAppMacro.h; sourceTree = "<group>"; };
 		297112051E4B098C00D52C91 /* ApiPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiPath.h; sourceTree = "<group>"; };
@@ -411,6 +419,42 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		295210991E69656C00D0FF1A /* Cinema(影院) */ = {
+			isa = PBXGroup;
+			children = (
+				2952109A1E69656C00D0FF1A /* Controllers */,
+				2952109B1E69656C00D0FF1A /* Model */,
+				2952109C1E69656C00D0FF1A /* Views */,
+			);
+			path = "Cinema(影院)";
+			sourceTree = "<group>";
+		};
+		2952109A1E69656C00D0FF1A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2952109B1E69656C00D0FF1A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2952109C1E69656C00D0FF1A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2952109D1E69682200D0FF1A /* MovieCollectionView.h */,
+				2952109E1E69682200D0FF1A /* MovieCollectionView.m */,
+				295210A01E696CAD00D0FF1A /* MovieCollectionCell.h */,
+				295210A11E696CAD00D0FF1A /* MovieCollectionCell.m */,
+				295210A21E696CAD00D0FF1A /* MovieCollectionCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		297112061E4B105300D52C91 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +544,7 @@
 			children = (
 				290E83721E5AE3AE0040D7F3 /* Custom */,
 				293045791E4C515F00738F71 /* Main(热门) */,
+				295210991E69656C00D0FF1A /* Cinema(影院) */,
 				293045471E4C4EF500738F71 /* Categories */,
 				2971120A1E4BFE0500D52C91 /* ThirdTools */,
 				297112061E4B105300D52C91 /* Tools */,
@@ -681,6 +726,7 @@
 				29915C971E4B042B000997AC /* Main.storyboard in Resources */,
 				292631121E5ECBCA00F76F28 /* CommentCell.xib in Resources */,
 				297387BB1E5434D1009688AE /* PerformerCell.xib in Resources */,
+				295210A41E696CAD00D0FF1A /* MovieCollectionCell.xib in Resources */,
 				297605501E5593C500D855A5 /* FilmStillCell.xib in Resources */,
 				29B048291E51B2D00045D8FE /* DetailHeaderCell.xib in Resources */,
 				297605481E55440600D855A5 /* BoxOfficeCell.xib in Resources */,
@@ -788,6 +834,7 @@
 				2971125F1E4C127D00D52C91 /* UIView+WebCacheOperation.m in Sources */,
 				293045691E4C4EF500738F71 /* NSObject+log.m in Sources */,
 				297112591E4C127D00D52C91 /* UIButton+WebCache.m in Sources */,
+				2952109F1E69682200D0FF1A /* MovieCollectionView.m in Sources */,
 				297112501E4C127D00D52C91 /* MKAnnotationView+WebCache.m in Sources */,
 				2926311A1E5ED7DD00F76F28 /* UIView+SDAutoLayout.m in Sources */,
 				2915DD321E4DB46D00D3122E /* MovieDetailController.m in Sources */,
@@ -807,6 +854,7 @@
 				297112541E4C127D00D52C91 /* SDWebImageDecoder.m in Sources */,
 				297605531E586D6B00D855A5 /* UIView+DDAddition.m in Sources */,
 				292626311E5C2DB5009913A9 /* ReachabilityStatus.m in Sources */,
+				295210A31E696CAD00D0FF1A /* MovieCollectionCell.m in Sources */,
 				2976054F1E5593C500D855A5 /* FilmStillCell.m in Sources */,
 				297112521E4C127D00D52C91 /* SDImageCache.m in Sources */,
 				290E837D1E5AEA480040D7F3 /* BaseViewController.m in Sources */,

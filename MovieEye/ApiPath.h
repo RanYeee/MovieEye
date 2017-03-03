@@ -76,7 +76,7 @@
 #define API_CINEMA_LIST @"https://m.maoyan.com/cinemas.json"
 
 /**
- 查询出影院详情(会自动根据你的ip段加载出你本地的影院)
+ 查询出影院详情
  cinemaid : 影院id
  movieid : 电影id
  */
