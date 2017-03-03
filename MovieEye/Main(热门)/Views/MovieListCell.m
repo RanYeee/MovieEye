@@ -25,6 +25,36 @@
     return [[NSBundle mainBundle]loadNibNamed:@"MovieListCell" owner:self options:nil][1];
 }
 
++(instancetype)createSearchResultCell
+{
+    return [[NSBundle mainBundle]loadNibNamed:@"MovieListCell" owner:self options:nil][2];
+
+}
+
+-(void)setSearchResultModel:(SearchResultModel *)searchResultModel
+{
+    _searchResultModel = searchResultModel;
+    self.nameLabel.text = searchResultModel.nm;
+    self.typeLabel.text = searchResultModel.cat;
+    self.iMaxLabel.hidden = YES;
+    if (isEmptyString(searchResultModel.ver)) {
+        
+        self._3dLabel.hidden = YES;
+    }
+    self._3dLabel.text = searchResultModel.ver;
+    self.showInfoLabel.text = searchResultModel.pubDesc;
+    self.starLabel.hidden = YES;
+    self.scoreLabel.textColor = searchResultModel.sc>0?RGB(255, 153, 0):[UIColor lightGrayColor];
+    //    self.scoreLabel.text = model.sc>0?[NSString stringWithFormat:@"%.1f分",model.sc]:@"暂无评分";
+    NSMutableAttributedString *attributedString_score = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.1f分",searchResultModel.sc]];
+    NSMutableAttributedString *attributedString_none = [[NSMutableAttributedString alloc] initWithString:@"暂未评分"];
+    NSDictionary *attrsDictionary = @{NSFontAttributeName:[UIFont systemFontOfSize:9]};
+    [attributedString_score addAttributes:attrsDictionary range:NSMakeRange(3, 1)];
+    self.scoreLabel.attributedText = searchResultModel.sc>0?attributedString_score:attributedString_none;
+    NSString *imgURLString = [searchResultModel.img stringByReplacingOccurrencesOfString:@"w.h" withString:@"156.220"];
+    [self.bliiImageView sd_setImageWithURL:[NSURL URLWithString:imgURLString]];
+
+}
 -(void)setModel:(MovieInfoModel *)model
 {
     _model = model;

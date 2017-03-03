@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MovieInfoModel.h"
+#import "SearchResultModel.h"
 @interface MovieListCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *bliiImageView;
 @property (weak, nonatomic) IBOutlet QMUILabel *nameLabel;
@@ -21,7 +22,11 @@
 
 @property(nonatomic, strong) MovieInfoModel *model;
 
+@property (nonatomic ,strong) SearchResultModel *searchResultModel;
+
 +(instancetype)createCell;
+
++(instancetype)createSearchResultCell;
 
 //创建占位cell
 +(instancetype)createPlaceHolderCell;

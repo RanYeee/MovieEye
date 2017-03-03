@@ -12,19 +12,21 @@
 #import "SearchHistoryCell.h"
 #import "MovieInfoModel.h"
 #import "MovieListCell.h"
+#import "SearchResultModel.h"
+#import "MovieDetailController.h"
 #define kHistorySearchArray @"kHistorySearchArray"
 
 #define kkeyWordSaveNum  4 //搜索记录保存个数
 
-@interface MovieSearchController ()<QMUITableViewDelegate,QMUITableViewDataSource,UISearchBarDelegate,SearchHistoryCellDelegate>
+@interface MovieSearchController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,SearchHistoryCellDelegate,CommentTagCellDelegate,UIGestureRecognizerDelegate>
 {
     BOOL _isInSearch; //是否在搜索过程中
 }
 @property(nonatomic, strong) QMUIFloatLayoutView *floatLayoutView;
-@property (nonatomic,strong) QMUITableView *tableView;
+@property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *hotSearchArray;
 @property (nonatomic,strong) NSMutableArray <NSString *>*hotSearchNameArray;
-@property (nonatomic,strong) NSMutableArray <MovieInfoModel *>*searchResultArray;
+@property (nonatomic,strong) NSMutableArray <SearchResultModel *>*searchResultArray;
 
 @property (nonatomic,strong) QMUISearchBar *searchBar;
 
@@ -40,7 +42,7 @@
     [super viewDidLoad];
     self.title = @"搜索";
     self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView = [[QMUITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -51,8 +53,22 @@
     //    [self.searchBar becomeFirstResponder];
     self.tableView.tableHeaderView = self.searchBar;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(resignFirstResponse)];
+    tapGesture.delegate = self;
     [self.tableView addGestureRecognizer:tapGesture];
     [self getHotSearchArray];
+    
+    
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    if ([touch.view isKindOfClass:[UITextField class]])
+    {
+        return NO;
+    }
+    // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    return YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -80,7 +96,7 @@
     return _hotSearchArray;
 }
 
--(NSMutableArray<MovieInfoModel *> *)searchResultArray
+-(NSMutableArray<SearchResultModel *> *)searchResultArray
 {
     if (!_searchResultArray) {
         _searchResultArray = [NSMutableArray array];
@@ -125,7 +141,7 @@
         
         for (NSDictionary *dict in request[@"data"]) {
             
-            [self.hotSearchArray addObject:[HotSearchModel mj_objectWithKeyValues:dict]];
+            [self.hotSearchArray addObject:[MovieInfoModel mj_objectWithKeyValues:dict]];
             
             [self.hotSearchNameArray addObject:dict[@"nm"]];
         }
@@ -142,6 +158,61 @@
 
 }
 
+-(void)searchWithKeyWord:(NSString *)keyWord
+{
+    NSString *apiString = API_MOVIE_SEARCH(@"10", keyWord);
+    
+    
+    [[APIRequestManager shareInstance]getHTTPPath:apiString success:^(id request) {
+        
+        _isInSearch = YES;
+        
+        NSArray *listArray = request[@"data"];
+        
+        for (int i = 0; i<[listArray count]; i++) {
+            
+            NSInteger listType = [listArray[i][@"type"]integerValue];
+            
+            if (listType == 0) {
+                //电影信息
+                NSArray *list = listArray[i][@"list"];
+                NSLog(@"datas = %@",list);
+                [self.searchResultArray removeAllObjects];
+                
+                [self.searchResultArray addObjectsFromArray:[SearchResultModel mj_objectArrayWithKeyValuesArray:list]];
+                
+                [self.tableView reloadData];
+                
+                [self.searchBar resignFirstResponder];
+                
+                //保存搜索记录
+                
+                if (self.keywordArray.count<kkeyWordSaveNum) {
+                    
+                    if (![self.keywordArray containsObject:self.searchBar.text]) {
+                        
+                        [self.keywordArray insertObject:self.searchBar.text atIndex:0];
+                        
+                        [[NSUserDefaults standardUserDefaults]setObject:self.keywordArray forKey:kHistorySearchArray];
+                        
+                        [[NSUserDefaults standardUserDefaults]synchronize];
+                    }
+           
+                    
+                }
+                
+                
+            }
+            
+        }
+        
+        
+    } failure:^(NSError *error) {
+        
+    }];
+
+}
+
 //搜索
 - (void)searchWithInputCount:(NSNumber *)inputCount{
     
@@ -151,43 +222,13 @@
     if (self.inputCount == [inputCount integerValue]) {
         
  
-        
-        NSString *apiString = API_MOVIE_SEARCH(@"10", self.searchBar.text);
-        
-        
-        [[APIRequestManager shareInstance]getHTTPPath:apiString success:^(id request) {
-
-            _isInSearch = YES;
-            //保存搜索记录
+        if(isEmptyString(self.searchBar.text)){
             
-            if (self.keywordArray.count<kkeyWordSaveNum) {
-                
-                [self.keywordArray insertObject:self.searchBar.text atIndex:0];
-                
-                [[NSUserDefaults standardUserDefaults]setObject:self.keywordArray forKey:kHistorySearchArray];
-                
-                [[NSUserDefaults standardUserDefaults]synchronize];
-                
-            }
-            
-            NSArray *datas = request[@"data"][0][@"list"];
-            [NSObject resolveDict:datas[0]];
-            NSLog(@"datas = %@",datas);
-//            [self.searchResultArray removeAllObjects];
-//            
-//            if (datas.count>0) {
-//                
-//                [self.searchResultArray addObjectsFromArray:[MovieInfoModel mj_keyValuesArrayWithObjectArray:datas]];
-//
-//            }
-//            
-//            [self.tableView reloadData];
-//            
+            return;
+        }
         
-        } failure:^(NSError *error) {
-            
-        }];
-
+      
+        [self searchWithKeyWord:self.searchBar.text];
     }
     
     
@@ -199,6 +240,13 @@
 {
     
     self.inputCount ++;
+    
+    if (searchText.length == 0) {
+        _isInSearch = NO;
+        [self.searchResultArray removeAllObjects];
+        [self.tableView reloadData];
+        
+    }
     
     [self performSelector:@selector(searchWithInputCount:) withObject:@(self.inputCount) afterDelay:1.0f];
 
@@ -244,20 +292,34 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    UITableViewCell *cell = nil;
     
     if (_isInSearch) {
         //正在搜索
-        MovieListCell *movieCell = [MovieListCell createCell];
-        movieCell.model = self.searchResultArray[indexPath.row];
-        cell = movieCell;
+        MovieListCell *movieCell = [tableView dequeueReusableCellWithIdentifier:@"MovieListCellID"];
+        
+        if (!movieCell) {
+           
+
+            movieCell = [MovieListCell createSearchResultCell];
+
+        }
+        
+        
+        SearchResultModel *model = (SearchResultModel *)self.searchResultArray[indexPath.row];
+
+        movieCell.searchResultModel = model;
+        
+        return movieCell;
         
     }else{
         
         if (self.keywordArray.count>0) {
             
-            if (indexPath.row < self.keywordArray.count) {
+            if (indexPath.row == self.keywordArray.count) {
                 
+                return [self tableviewCell_CreateHotSearchCellWithTableView:tableView AtIndexPath:indexPath];
+
+            }else{
                 //历史搜索的cell
                 
                 SearchHistoryCell *historyCell = [SearchHistoryCell createFromXIB];
@@ -268,16 +330,15 @@
                 
                 historyCell.historyKeyLabel.text = self.keywordArray[indexPath.row];
                 
-                cell = historyCell;
+                return  historyCell;
+
                 
-            }else{
-                
-                cell = [self tableviewCell_CreateHotSearchCellAtIndexPath:indexPath];
             }
             
+
         }else{
             
-            cell = [self tableviewCell_CreateHotSearchCellAtIndexPath:indexPath];
+            return  [self tableviewCell_CreateHotSearchCellWithTableView:tableView AtIndexPath:indexPath];
             
         }
         
@@ -285,16 +346,19 @@
         
     }
     
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
 
-    return cell;
 }
 
-- (HotSearchCell *)tableviewCell_CreateHotSearchCellAtIndexPath:(NSIndexPath *)indexPath
+- (HotSearchCell *)tableviewCell_CreateHotSearchCellWithTableView:(UITableView *)tableView AtIndexPath:(NSIndexPath *)indexPath
 {
     
-    HotSearchCell *cell = [[HotSearchCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cellID"];
+    HotSearchCell *cell = [[HotSearchCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"HotSearchCellId"];
+    
+//    if (!cell) {
+    
+//    }
+    cell.delegate = self;
     
     cell.customTitleLabel.text = @"热门搜索";
     
@@ -308,19 +372,59 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (self.keywordArray.count>0) {
-    
-        if (indexPath.row<self.keywordArray.count) {
+    if (_isInSearch) {
+        
+        return 120;
+        
+    }else{
+        
+        if (self.keywordArray.count>0) {
             
-            return 44;
+            if (indexPath.row<self.keywordArray.count) {
+                
+                return 44;
+                
+            }else{
+                
+                return [HotSearchCell rowHeightWithTagArray:self.hotSearchNameArray]+44;
+            }
             
         }else{
+            
             return [HotSearchCell rowHeightWithTagArray:self.hotSearchNameArray]+44;
+
         }
-    
+        
     }
     
-    return [HotSearchCell rowHeightWithTagArray:self.hotSearchNameArray]+44;
+
+   
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (_isInSearch) {
+        
+        SearchResultModel *model = self.searchResultArray[indexPath.row];
+        
+        [self pushToDetailVCWithMovieId:[NSString stringWithFormat:@"%d",model._id]];
+
+    }else{
+        
+        if (self.keywordArray.count>0 && indexPath.row < self.keywordArray.count) {
+            
+            [self.searchBar resignFirstResponder];
+            
+            [self searchWithKeyWord:self.keywordArray[indexPath.row]];
+            
+            self.searchBar.text = self.keywordArray[indexPath.row];
+            
+        }else{
+            
+            return;
+        }
+        
+    }
 }
 
 
@@ -328,19 +432,45 @@
 {
 
 
-    [self.keywordArray removeObject:cell.historyKeyLabel.text];
+    [self.keywordArray removeObjectAtIndex:indexPath.row];
     NSLog(@">>>keywordArray = %@",self.keywordArray);
 
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+//    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     
     [[NSUserDefaults standardUserDefaults]setObject:self.keywordArray forKey:kHistorySearchArray];
     
     [[NSUserDefaults standardUserDefaults]synchronize];
+    
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 
-   
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
 }
+
+#pragma mark - TagClickAction
+
+-(void)commentTagCell:(CommentTagCell *)cell didClickTagAtIndex:(NSInteger)index
+{
+    MovieInfoModel *model = self.hotSearchArray[index];
+    
+    [self pushToDetailVCWithMovieId:[NSString stringWithFormat:@"%d",model._id]];
+    
+}
+
+#pragma mark - 
+
+- (void)pushToDetailVCWithMovieId:(NSString *)movieId
+{
+    MovieDetailController *detailVC = [[MovieDetailController alloc]init];
+    
+    detailVC.movieId = movieId;
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
+
+}
+
 
 
 @end

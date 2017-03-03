@@ -199,15 +199,18 @@ static NSString *commentCellID = @"commentCellID";
    
         
         BoxOfficeCell *cell = [tableView dequeueReusableCellWithIdentifier:boxOfficeCellID];
+        
         if (!cell) {
           
             cell = [BoxOfficeCell createFromXIB];
             
 
         }
+        
         [cell setInfoWithRequestDict:self.mboxDict];
 
         return cell;
+        
     }else if (indexPath.section == 3){
         
 
@@ -219,15 +222,24 @@ static NSString *commentCellID = @"commentCellID";
         }
         
         NSMutableArray *photoArray = [NSMutableArray arrayWithArray:self.headerInfoModel.photos];
-        [photoArray insertObject:self.headerInfoModel.videoImg atIndex:0];
+        
+        if(self.headerInfoModel.videoImg){
+            
+            [photoArray insertObject:self.headerInfoModel.videoImg atIndex:0];
+        }
+        
         [cell setStagePhotoWithPhotos:photoArray];
+        
         cell.mp4_Url = self.headerInfoModel.videourl;
+        
         return cell;
+        
     }else{
         
         [tableView setSeparatorInset:UIEdgeInsetsMake(0,43,0,0)];
 
         CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:commentCellID];
+        
         if (!cell) {
    
             cell = [CommentCell createFromXIB];
@@ -255,6 +267,7 @@ static NSString *commentCellID = @"commentCellID";
     return 110;
     
 }
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
