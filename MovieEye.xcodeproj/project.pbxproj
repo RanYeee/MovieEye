@@ -78,6 +78,11 @@
 		29B048241E518B790045D8FE /* SearchHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29B048221E518B790045D8FE /* SearchHistoryCell.xib */; };
 		29B048281E51B2D00045D8FE /* DetailHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B048261E51B2D00045D8FE /* DetailHeaderCell.m */; };
 		29B048291E51B2D00045D8FE /* DetailHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29B048271E51B2D00045D8FE /* DetailHeaderCell.xib */; };
+		29FF56471E6E8401000324BD /* CinemaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FF56461E6E8401000324BD /* CinemaListViewController.m */; };
+		29FF564A1E6E8A9F000324BD /* CinemaListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FF56491E6E8A9F000324BD /* CinemaListModel.m */; };
+		29FF564E1E6E90B6000324BD /* CinemaListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FF564C1E6E90B6000324BD /* CinemaListCell.m */; };
+		29FF564F1E6E90B6000324BD /* CinemaListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29FF564D1E6E90B6000324BD /* CinemaListCell.xib */; };
+		29FF56531E6EA55B000324BD /* AreaListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FF56521E6EA55B000324BD /* AreaListView.m */; };
 		6EDC460CD193BEB2A29A1C91 /* Pods_MovieEye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D721E4EB780412BBD17329 /* Pods_MovieEye.framework */; };
 /* End PBXBuildFile section */
 
@@ -236,6 +241,15 @@
 		29B048251E51B2D00045D8FE /* DetailHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailHeaderCell.h; sourceTree = "<group>"; };
 		29B048261E51B2D00045D8FE /* DetailHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailHeaderCell.m; sourceTree = "<group>"; };
 		29B048271E51B2D00045D8FE /* DetailHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailHeaderCell.xib; sourceTree = "<group>"; };
+		29FF56451E6E8401000324BD /* CinemaListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinemaListViewController.h; sourceTree = "<group>"; };
+		29FF56461E6E8401000324BD /* CinemaListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinemaListViewController.m; sourceTree = "<group>"; };
+		29FF56481E6E8A9F000324BD /* CinemaListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinemaListModel.h; sourceTree = "<group>"; };
+		29FF56491E6E8A9F000324BD /* CinemaListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinemaListModel.m; sourceTree = "<group>"; };
+		29FF564B1E6E90B6000324BD /* CinemaListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinemaListCell.h; sourceTree = "<group>"; };
+		29FF564C1E6E90B6000324BD /* CinemaListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinemaListCell.m; sourceTree = "<group>"; };
+		29FF564D1E6E90B6000324BD /* CinemaListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CinemaListCell.xib; sourceTree = "<group>"; };
+		29FF56511E6EA55B000324BD /* AreaListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaListView.h; sourceTree = "<group>"; };
+		29FF56521E6EA55B000324BD /* AreaListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaListView.m; sourceTree = "<group>"; };
 		517CB399CA177BEB12A257B3 /* Pods-MovieEye.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieEye.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieEye/Pods-MovieEye.debug.xcconfig"; sourceTree = "<group>"; };
 		89D721E4EB780412BBD17329 /* Pods_MovieEye.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieEye.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61FD2913983A8EDDDFA835E /* Pods-MovieEye.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieEye.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieEye/Pods-MovieEye.release.xcconfig"; sourceTree = "<group>"; };
@@ -432,6 +446,8 @@
 		2952109A1E69656C00D0FF1A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				29FF56451E6E8401000324BD /* CinemaListViewController.h */,
+				29FF56461E6E8401000324BD /* CinemaListViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -439,6 +455,8 @@
 		2952109B1E69656C00D0FF1A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				29FF56481E6E8A9F000324BD /* CinemaListModel.h */,
+				29FF56491E6E8A9F000324BD /* CinemaListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -451,6 +469,11 @@
 				295210A01E696CAD00D0FF1A /* MovieCollectionCell.h */,
 				295210A11E696CAD00D0FF1A /* MovieCollectionCell.m */,
 				295210A21E696CAD00D0FF1A /* MovieCollectionCell.xib */,
+				29FF564B1E6E90B6000324BD /* CinemaListCell.h */,
+				29FF564C1E6E90B6000324BD /* CinemaListCell.m */,
+				29FF564D1E6E90B6000324BD /* CinemaListCell.xib */,
+				29FF56511E6EA55B000324BD /* AreaListView.h */,
+				29FF56521E6EA55B000324BD /* AreaListView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -719,6 +742,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29FF564F1E6E90B6000324BD /* CinemaListCell.xib in Resources */,
 				29B048241E518B790045D8FE /* SearchHistoryCell.xib in Resources */,
 				29915C9C1E4B042B000997AC /* LaunchScreen.storyboard in Resources */,
 				29915C991E4B042B000997AC /* Assets.xcassets in Resources */,
@@ -804,6 +828,7 @@
 			files = (
 				2971125D1E4C127D00D52C91 /* UIImageView+HighlightedWebCache.m in Sources */,
 				297387B61E53F23B009688AE /* MovieDetailInfoModel.m in Sources */,
+				29FF56471E6E8401000324BD /* CinemaListViewController.m in Sources */,
 				2926262E1E5C1C16009913A9 /* AppTools.m in Sources */,
 				2915DD351E4DB48100D3122E /* MovieSearchController.m in Sources */,
 				29B048231E518B790045D8FE /* SearchHistoryCell.m in Sources */,
@@ -811,12 +836,14 @@
 				29B048281E51B2D00045D8FE /* DetailHeaderCell.m in Sources */,
 				2976054B1E55524000D855A5 /* BaseTableViewCell.m in Sources */,
 				2971125B1E4C127D00D52C91 /* UIImage+MultiFormat.m in Sources */,
+				29FF564E1E6E90B6000324BD /* CinemaListCell.m in Sources */,
 				297112561E4C127D00D52C91 /* SDWebImageDownloaderOperation.m in Sources */,
 				295210941E6902F100D0FF1A /* CinemaModel.m in Sources */,
 				292631191E5ED7DD00F76F28 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				29A157C51E63D1290004F5E7 /* ShotCommentController.m in Sources */,
 				297112091E4B108300D52C91 /* APIRequestManager.m in Sources */,
 				297112531E4C127D00D52C91 /* SDWebImageCompat.m in Sources */,
+				29FF564A1E6E8A9F000324BD /* CinemaListModel.m in Sources */,
 				290E83771E5AE3E10040D7F3 /* CustomNavigationController.m in Sources */,
 				2971125A1E4C127D00D52C91 /* UIImage+GIF.m in Sources */,
 				297112581E4C127D00D52C91 /* SDWebImagePrefetcher.m in Sources */,
@@ -840,6 +867,7 @@
 				2915DD321E4DB46D00D3122E /* MovieDetailController.m in Sources */,
 				2915DD381E4DBB0A00D3122E /* HotSearchCell.m in Sources */,
 				29A157C81E63D2930004F5E7 /* CommentTagCell.m in Sources */,
+				29FF56531E6EA55B000324BD /* AreaListView.m in Sources */,
 				297605561E587D5300D855A5 /* VideoPlayerController.m in Sources */,
 				293045831E4C515F00738F71 /* MovieListCell.m in Sources */,
 				297112511E4C127D00D52C91 /* NSData+ImageContentType.m in Sources */,

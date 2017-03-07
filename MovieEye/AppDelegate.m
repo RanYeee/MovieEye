@@ -7,8 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <QMUIKit/QMUIConfigurationManager.h>
-#import <QMUIKit/QMUIConfigurationTemplate.h>
+
 
 @interface AppDelegate ()
 

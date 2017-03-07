@@ -11,7 +11,7 @@
         <!--Item 2-->
         <scene sceneID="byz-jV-nwT">
             <objects>
-                <viewController id="d7q-U6-rdY" sceneMemberID="viewController">
+                <viewController id="d7q-U6-rdY" customClass="CinemaListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1eA-nz-D93"/>
                         <viewControllerLayoutGuide type="bottom" id="EBP-gP-FRy"/>
@@ -71,14 +71,19 @@
             </objects>
             <point key="canvasLocation" x="777" y="-313"/>
         </scene>
-        <!--Item-->
+        <!--影院-->
         <scene sceneID="do7-15-eZN">
             <objects>
                 <navigationController id="hFT-fd-axi" customClass="QMUINavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="fSd-XB-b6t"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yvq-lx-WNQ">
+                    <tabBarItem key="tabBarItem" title="影院" image="cinema-nomal" id="fSd-XB-b6t"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="yvq-lx-WNQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.81176470590000005" green="0.16078431369999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="d7q-U6-rdY" kind="relationship" relationship="rootViewController" id="pgY-bS-qgo"/>
@@ -109,6 +114,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cinema-nomal" width="24" height="24"/>
         <image name="tabbarItem_movie" width="32" height="32"/>
     </resources>
 </document>

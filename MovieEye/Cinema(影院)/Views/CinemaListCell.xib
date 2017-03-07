@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="85" id="KGk-i7-Jjw" customClass="CinemaListCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdn-0H-7Rr">
+                        <rect key="frame" x="8" y="8" width="42" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="tds-s4-arJ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBy-iq-7zy">
+                        <rect key="frame" x="8" y="30" width="33" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="Eov-OM-c4G"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36元起" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvL-ne-gNQ">
+                        <rect key="frame" x="260" y="32" width="52" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="KHQ-bI-Sy4"/>
+                            <constraint firstAttribute="width" constant="52" id="a0Q-JR-XXS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                        <color key="textColor" red="0.81176470590000005" green="0.16078431369999999" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="EBy-iq-7zy" firstAttribute="width" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="2/3" id="18t-Xk-J54"/>
+                    <constraint firstItem="RvL-ne-gNQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3g6-Iz-3Ld"/>
+                    <constraint firstItem="Cdn-0H-7Rr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="H5V-DD-phM"/>
+                    <constraint firstItem="Cdn-0H-7Rr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="JHI-Qf-ORO"/>
+                    <constraint firstAttribute="trailing" secondItem="RvL-ne-gNQ" secondAttribute="trailing" constant="8" id="PXU-Hh-jYD"/>
+                    <constraint firstItem="Cdn-0H-7Rr" firstAttribute="width" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="2/3" id="TrA-iJ-1oN"/>
+                    <constraint firstItem="EBy-iq-7zy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="cy5-do-EL8"/>
+                    <constraint firstItem="EBy-iq-7zy" firstAttribute="top" secondItem="Cdn-0H-7Rr" secondAttribute="bottom" constant="1" id="e1M-tX-yeV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addressLabel" destination="EBy-iq-7zy" id="Krh-iO-8ie"/>
+                <outlet property="nameLabel" destination="Cdn-0H-7Rr" id="XJy-NI-X7N"/>
+                <outlet property="priceLabel" destination="RvL-ne-gNQ" id="EBu-dP-235"/>
+            </connections>
+            <point key="canvasLocation" x="-127" y="-56"/>
+        </tableViewCell>
+    </objects>
+</document>
