@@ -10,7 +10,8 @@
 #import "CinemaListModel.h"
 #import "CinemaListCell.h"
 #import "AreaListView.h"
-@interface CinemaListViewController ()<UITableViewDelegate,UITableViewDataSource,QMUINavigationTitleViewDelegate>
+#import "CinemaDetailViewController.h"
+@interface CinemaListViewController ()<UITableViewDelegate,UITableViewDataSource,QMUINavigationTitleViewDelegate,AreaListViewDelegate>
 
 /** button*/
 @property (nonatomic, strong) UIButton *addressButton;
@@ -45,6 +46,12 @@
     
     self.addressButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
+    [self.addressButton setImage:IMAGE(@"right") forState:UIControlStateNormal];
+    
+    [self.addressButton setImage:IMAGE(@"left") forState:UIControlStateSelected];
+
+    self.addressButton.imageEdgeInsets = UIEdgeInsetsMake(0, 100, 0, -50);
+    
     [self.addressButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     
     self.addressButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -63,9 +70,9 @@
     
     [customView addSubview:self.tableView];
     
-    self.arealistView = [[AreaListView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*2/3, 0, SCREEN_WIDTH/3, SCREEN_HEIGHT-64-44)];
+    self.arealistView = [[AreaListView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*2/3, 44, SCREEN_WIDTH/3, SCREEN_HEIGHT-44)];
     
-    self.arealistView.top = self.addressButton.bottom;
+    self.arealistView.delegate = self;
     
     [customView insertSubview:self.arealistView atIndex:0];
     
@@ -93,35 +100,62 @@
     if (self.addressButton.isSelected) {
         
 
-        [UIView animateWithDuration:0.4 animations:^{
-            
-            [self.tabBarController.tabBar setHidden:NO];
+        [self openTable:YES complete:nil];
 
-            self.addressButton.left+=SCREEN_WIDTH/3;
-            
-            self.tableView.left+=SCREEN_WIDTH/3;
-            self.tabBarController.tabBar.left+=SCREEN_WIDTH/3;
-
-        }];
         
     }else{
         
-        [UIView animateWithDuration:0.4 animations:^{
-            
-//            [self.tabBarController.tabBar setHidden:YES];
 
-            self.tabBarController.tabBar.left-=SCREEN_WIDTH/3;
-            self.addressButton.left-=SCREEN_WIDTH/3;
-            
-            self.tableView.left-=SCREEN_WIDTH/3;
-            
-
-            
-        }];
-        
+        [self openTable:NO complete:nil];
     }
     
     self.addressButton.selected = !self.addressButton.isSelected;
+
+}
+
+- (void)openTable:(BOOL)isOpen complete:(void(^)())complete
+{
+    [UIView animateWithDuration:0.4 animations:^{
+        
+        //            [self.tabBarController.tabBar setHidden:YES];
+        
+        self.tabBarController.tabBar.left+=isOpen?SCREEN_WIDTH/3:(-SCREEN_WIDTH/3);
+        self.addressButton.left+=isOpen?SCREEN_WIDTH/3:(-SCREEN_WIDTH/3);
+        
+        self.tableView.left+=isOpen?SCREEN_WIDTH/3:(-SCREEN_WIDTH/3);
+        
+        
+        
+    }completion:^(BOOL finished) {
+        
+        if (complete) {
+            
+            complete();
+        }
+        
+    }];
+    
+}
+
+#pragma mark - areaListViewDelegate
+
+-(void)areaListView:(AreaListView *)listView didSelectItemAtIndex:(NSInteger)index
+{
+    __weak typeof(self) weakSelf = self;
+    
+    [self openTable:YES complete:^{
+        
+        
+        [weakSelf selectAreaToReloadDateModel:weakSelf.areaNameArray[index]];
+
+        [weakSelf.addressButton setTitle:weakSelf.areaNameArray[index] forState:UIControlStateNormal];
+        
+        weakSelf.addressButton.selected = !self.addressButton.isSelected;
+
+        
+    }];
+    
+    
 
 }
 
@@ -217,6 +251,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    CinemaDetailViewController *detail = [[CinemaDetailViewController alloc]init];
+    
+    [self.navigationController pushViewController:detail animated:YES];
     
 }
 

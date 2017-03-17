@@ -63,6 +63,7 @@
 		297605561E587D5300D855A5 /* VideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297605551E587D5300D855A5 /* VideoPlayerController.m */; };
 		297605581E587F6600D855A5 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297605571E587F6600D855A5 /* AVKit.framework */; };
 		2976055A1E587F6C00D855A5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297605591E587F6C00D855A5 /* AVFoundation.framework */; };
+		298585371E6FAAA50034BE16 /* CinemaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 298585361E6FAAA50034BE16 /* CinemaDetailViewController.m */; };
 		29915C8E1E4B042B000997AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29915C8D1E4B042B000997AC /* main.m */; };
 		29915C911E4B042B000997AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29915C901E4B042B000997AC /* AppDelegate.m */; };
 		29915C971E4B042B000997AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29915C951E4B042B000997AC /* Main.storyboard */; };
@@ -213,6 +214,8 @@
 		297605551E587D5300D855A5 /* VideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerController.m; sourceTree = "<group>"; };
 		297605571E587F6600D855A5 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		297605591E587F6C00D855A5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		298585351E6FAAA50034BE16 /* CinemaDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinemaDetailViewController.h; sourceTree = "<group>"; };
+		298585361E6FAAA50034BE16 /* CinemaDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinemaDetailViewController.m; sourceTree = "<group>"; };
 		29915C891E4B042B000997AC /* MovieEye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieEye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29915C8D1E4B042B000997AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29915C8F1E4B042B000997AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -448,6 +451,8 @@
 			children = (
 				29FF56451E6E8401000324BD /* CinemaListViewController.h */,
 				29FF56461E6E8401000324BD /* CinemaListViewController.m */,
+				298585351E6FAAA50034BE16 /* CinemaDetailViewController.h */,
+				298585361E6FAAA50034BE16 /* CinemaDetailViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -850,6 +855,7 @@
 				291DD5A21E602100004F56DC /* LikeAnimationView.m in Sources */,
 				29915C911E4B042B000997AC /* AppDelegate.m in Sources */,
 				290E837A1E5AE87E0040D7F3 /* CustomTabbarController.m in Sources */,
+				298585371E6FAAA50034BE16 /* CinemaDetailViewController.m in Sources */,
 				293045821E4C515F00738F71 /* MovieListController.m in Sources */,
 				2971125C1E4C127D00D52C91 /* UIImage+WebP.m in Sources */,
 				2971125E1E4C127D00D52C91 /* UIImageView+WebCache.m in Sources */,

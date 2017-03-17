@@ -59,11 +59,12 @@
         
     }];
     
-    self.collectionView = [[UICollectionView alloc]init];
+    self.collectionViewLayout = [[QMUICollectionViewPagingLayout alloc] initWithStyle:QMUICollectionViewPagingLayoutStyleScale];
+    
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:self.collectionViewLayout];
     self.collectionView.backgroundColor = UIColorClear;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.collectionViewLayout = self.collectionViewLayout;
     [self.collectionView registerNib:[UINib nibWithNibName:@"MovieCollectionCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"cellID"];
     [self addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {

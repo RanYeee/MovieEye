@@ -22,6 +22,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.frame = frame;
         [self setupUI];
     }
     return self;
@@ -29,19 +30,12 @@
 
 -(void)setupUI
 {
-    self.tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStyleGrouped];
-    self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) style:UITableViewStylePlain];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.left.equalTo(self);
-        make.right.equalTo(self);
-        make.top.equalTo(self);
-        make.bottom.equalTo(self);
-        
-    }];
+
 }
 
 -(void)setAreaNameArray:(NSArray *)areaNameArray
@@ -90,17 +84,17 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0.01;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 0.01;
+    return 0.01f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (self.delegate) {
+        
+        [self.delegate areaListView:self didSelectItemAtIndex:indexPath.row];
+    }
 }
 
 
