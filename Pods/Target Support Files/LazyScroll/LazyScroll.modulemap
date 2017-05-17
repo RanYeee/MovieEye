@@ -1,0 +1,6 @@
+framework module LazyScroll {
+  umbrella header "LazyScroll-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -49,7 +49,8 @@
         [avatarButton addTarget:self action:@selector(handleAvatarViewEvent:) forControlEvents:UIControlEventTouchUpInside];
         
         NSString *imgURLString = [obj[@"avatar"] stringByReplacingOccurrencesOfString:@"w.h" withString:@"156.220"];
-        avatarButton.contentMode = UIViewContentModeScaleAspectFill;
+        avatarButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        avatarButton.clipsToBounds = YES;
         [avatarButton sd_setImageWithURL:[NSURL URLWithString:imgURLString] forState:UIControlStateNormal];
         
         avatarButton.frame = CGRectMake(i*80+kSpacing, 8, 70, 90);

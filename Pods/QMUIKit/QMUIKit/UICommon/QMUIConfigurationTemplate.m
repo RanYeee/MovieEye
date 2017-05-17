@@ -63,7 +63,7 @@
     
     #pragma mark - UIControl
     
-    //- QMUICMI.controlDisabledAlpha = 0.5f;                                                    // UIControlHighlightedAlpha : 全局的highlighted alpha值
+    //- QMUICMI.controlHighlightedAlpha = 0.5f;                                                 // UIControlHighlightedAlpha : 全局的highlighted alpha值
     //- QMUICMI.controlDisabledAlpha = 0.5f;                                                    // UIControlDisabledAlpha : 全局的disabled alpha值
     
     //- QMUICMI.segmentTextTintColor = UIColorBlue;                                             // SegmentTextTintColor : segment的tintColor
@@ -108,13 +108,11 @@
     //- QMUICMI.navBarBackgroundImage = nil;                                            // NavBarBackgroundImage
     //- QMUICMI.navBarShadowImage = nil;                                                // NavBarShadowImage
     //- QMUICMI.navBarBarTintColor = nil;                                               // NavBarBarTintColor
- QMUICMI.navBarTintColor = UIColorBlack;                                         // NavBarTintColor
-    //- QMUICMI.navBarTintColorHighlighted = [NavBarTintColor colorWithAlphaComponent:NavBarHighlightedAlpha];          // NavBarTintColorHighlighted
-    //- QMUICMI.navBarTintColorDisabled = [NavBarTintColor colorWithAlphaComponent:NavBarDisabledAlpha];                // NavBarTintColorDisabled
-QMUICMI.navBarTitleColor = NavBarTintColor;                                     // NavBarTitleColor
+    //- QMUICMI.navBarTintColor = UIColorBlack;                                         // NavBarTintColor
+    //- QMUICMI.navBarTitleColor = NavBarTintColor;                                     // NavBarTitleColor
     //- QMUICMI.navBarTitleFont = UIFontBoldMake(17);                                   // NavBarTitleFont
     //- QMUICMI.navBarBackButtonTitlePositionAdjustment = UIOffsetZero;                 // NavBarBarBackButtonTitlePositionAdjustment
- QMUICMI.navBarBackIndicatorImage = [UIImage qmui_imageWithShape:QMUIImageShapeNavBack size:CGSizeMake(12, 20) tintColor:NavBarTintColor];    // NavBarBackIndicatorImage
+    //- QMUICMI.navBarBackIndicatorImage = [UIImage qmui_imageWithShape:QMUIImageShapeNavBack size:CGSizeMake(12, 20) tintColor:NavBarTintColor];    // NavBarBackIndicatorImage
     //- QMUICMI.navBarCloseButtonImage = [UIImage qmui_imageWithShape:QMUIImageShapeNavClose size:CGSizeMake(16, 16) tintColor:NavBarTintColor];     // NavBarCloseButtonImage
     
     //- QMUICMI.navBarLoadingMarginRight = 3;                                           // NavBarLoadingMarginRight
@@ -124,12 +122,12 @@ QMUICMI.navBarTitleColor = NavBarTintColor;                                     
     
     #pragma mark - TabBar
     
-//    - QMUICMI.tabBarBackgroundImage = nil;                                                            // TabBarBackgroundImage
-//    - QMUICMI.tabBarBarTintColor = nil;    // TabBarBarTintColor
-//    - QMUICMI.tabBarShadowImageColor = nil;                                    // TabBarShadowImageColor
-QMUICMI.tabBarTintColor = UIColorMake(22, 147, 229);                                            // TabBarTintColor
-QMUICMI.tabBarItemTitleColor = UIColorMake(119, 119, 119);                                      // TabBarItemTitleColor
-//    - QMUICMI.tabBarItemTitleColorSelected = TabBarTintColor;                                         // TabBarItemTitleColorSelected
+    //- QMUICMI.tabBarBackgroundImage = nil;                                                            // TabBarBackgroundImage
+    //- QMUICMI.tabBarBarTintColor = nil;    // TabBarBarTintColor
+    //- QMUICMI.tabBarShadowImageColor = nil;                                    // TabBarShadowImageColor
+    //- QMUICMI.tabBarTintColor = UIColorMake(22, 147, 229);                                            // TabBarTintColor
+    //- QMUICMI.tabBarItemTitleColor = UIColorMake(119, 119, 119);                                      // TabBarItemTitleColor
+    //- QMUICMI.tabBarItemTitleColorSelected = TabBarTintColor;                                         // TabBarItemTitleColorSelected
     
     #pragma mark - Toolbar
     
@@ -164,13 +162,18 @@ QMUICMI.tabBarItemTitleColor = UIColorMake(119, 119, 119);                      
     //- QMUICMI.tableSectionIndexBackgroundColor = UIColorClear;                            // TableSectionIndexBackgroundColor
     //- QMUICMI.tableSectionIndexTrackingBackgroundColor = UIColorClear;                    // TableSectionIndexTrackingBackgroundColor
     //- QMUICMI.tableViewSeparatorColor = UIColorSeparator;                                 // TableViewSeparatorColor
+    
+    //- QMUICMI.tableViewCellNormalHeight = 44;                                             // TableViewCellNormalHeight
+    //- QMUICMI.tableViewCellTitleLabelColor = UIColorBlack;                                                // TableViewCellTitleLabelColor
+    //- QMUICMI.tableViewCellDetailLabelColor = UIColorGray;                                                // TableViewCellDetailLabelColor
+    //- QMUICMI.tableViewCellContentDefaultPaddingLeft = 15;                                                // TableViewCellContentDefaultPaddingLeft
+    //- QMUICMI.tableViewCellContentDefaultPaddingRight = 10;                                               // TableViewCellContentDefaultPaddingRight
     //- QMUICMI.tableViewCellBackgroundColor = UIColorWhite;                                // TableViewCellBackgroundColor
     //- QMUICMI.tableViewCellSelectedBackgroundColor = UIColorMake(232, 232, 232);          // TableViewCellSelectedBackgroundColor
     //- QMUICMI.tableViewCellWarningBackgroundColor = UIColorYellow;                        // TableViewCellWarningBackgroundColor
-    //- QMUICMI.tableViewCellNormalHeight = 44;                                             // TableViewCellNormalHeight
-    
     //- QMUICMI.tableViewCellDisclosureIndicatorImage = [UIImage qmui_imageWithShape:QMUIImageShapeDisclosureIndicator size:CGSizeMake(8, 13) tintColor:UIColorMakeWithRGBA(0, 0, 0, .2)];       // TableViewCellDisclosureIndicatorImage
     //- QMUICMI.tableViewCellCheckmarkImage = [UIImage qmui_imageWithShape:QMUIImageShapeCheckmark size:CGSizeMake(15, 12) tintColor:UIColorBlue];     // TableViewCellCheckmarkImage
+    
     //- QMUICMI.tableViewSectionHeaderBackgroundColor = UIColorMake(244, 244, 244);                         // TableViewSectionHeaderBackgroundColor
     //- QMUICMI.tableViewSectionFooterBackgroundColor = UIColorMake(244, 244, 244);                         // TableViewSectionFooterBackgroundColor
     //- QMUICMI.tableViewSectionHeaderFont = UIFontBoldMake(12);                                            // TableViewSectionHeaderFont
@@ -180,7 +183,7 @@ QMUICMI.tabBarItemTitleColor = UIColorMake(119, 119, 119);                      
     //- QMUICMI.tableViewSectionHeaderHeight = 20;                                                          // TableViewSectionHeaderHeight
     //- QMUICMI.tableViewSectionFooterHeight = 0;                                                           // TableViewSectionFooterHeight
     //- QMUICMI.tableViewSectionHeaderContentInset = UIEdgeInsetsMake(4, 15, 4, 15);                        // TableViewSectionHeaderContentInset
-    //- QMUICMI.tableViewSectionFooterContentInset = UIEdgeInsetsMake(4, 15, 4, 15);                        // TableViewSectionHeaderContentInset
+    //- QMUICMI.tableViewSectionFooterContentInset = UIEdgeInsetsMake(4, 15, 4, 15);                        // TableViewSectionFooterContentInset
     
     //- QMUICMI.tableViewGroupedSectionHeaderFont = UIFontMake(12);                                         // TableViewGroupedSectionHeaderFont
     //- QMUICMI.tableViewGroupedSectionFooterFont = UIFontMake(12);                                         // TableViewGroupedSectionFooterFont
@@ -190,11 +193,6 @@ QMUICMI.tabBarItemTitleColor = UIColorMake(119, 119, 119);                      
     //- QMUICMI.tableViewGroupedSectionFooterHeight = 1;                                                    // TableViewGroupedSectionFooterHeight
     //- QMUICMI.tableViewGroupedSectionHeaderContentInset = UIEdgeInsetsMake(16, 15, 8, 15);                // TableViewGroupedSectionHeaderContentInset
     //- QMUICMI.tableViewGroupedSectionFooterContentInset = UIEdgeInsetsMake(8, 15, 2, 15);                 // TableViewGroupedSectionFooterContentInset
-    
-    //- QMUICMI.tableViewCellTitleLabelColor = UIColorBlack;                                                // TableViewCellTitleLabelColor
-    //- QMUICMI.tableViewCellDetailLabelColor = UIColorGray;                                                // TableViewCellDetailLabelColor
-    //- QMUICMI.tableViewCellContentDefaultPaddingLeft = 15;                                                // TableViewCellContentDefaultPaddingLeft
-    //- QMUICMI.tableViewCellContentDefaultPaddingRight = 10;                                               // TableViewCellContentDefaultPaddingRight
     
     #pragma mark - UIWindowLevel
     //- QMUICMI.windowLevelQMUIAlertView = UIWindowLevelAlert - 4.0;                    // UIWindowLevelQMUIAlertView

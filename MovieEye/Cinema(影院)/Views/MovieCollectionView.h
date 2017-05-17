@@ -10,4 +10,6 @@
 
 @interface MovieCollectionView : UIView
 
+@property(nonatomic, strong) NSArray *picUrlArray;
+
 @end

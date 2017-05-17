@@ -37,6 +37,7 @@
 #import "QMUIOrderedDictionary.h"
 #import "QMUIPieProgressView.h"
 #import "QMUIPopupContainerView.h"
+#import "QMUIPopupMenuView.h"
 #import "QMUIQQEmotionManager.h"
 #import "QMUITestView.h"
 #import "QMUITips.h"

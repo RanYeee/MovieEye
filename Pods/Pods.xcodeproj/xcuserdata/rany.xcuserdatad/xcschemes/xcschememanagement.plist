@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>LazyScroll.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MJExtension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,16 +62,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>624B6CBFC96598CE33A45281546AAC0D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A0049B8E60B98F063D3DE4D803B67476</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
 		<dict>
 			<key>primary</key>
@@ -82,7 +77,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E45BD3B6893E6C2E97F845C2BF33B13E</key>
+		<key>ECD0C43FD749EC47414EEA2A26BB8A4C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FB735C8881E01BB0BB4C30D330E3EC91</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FC5544F75BB5ADE26F9500911C0D709C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF0E1EB9781C19151F61730F559E1683</key>
 		<dict>
 			<key>primary</key>
 			<true/>
