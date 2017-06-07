@@ -10,4 +10,6 @@
 
 @interface CinemaDetailViewController : UIViewController
 
+@property(nonatomic, strong) NSString *cinemaID;
+
 @end

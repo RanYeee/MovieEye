@@ -10,4 +10,7 @@
 
 @interface CinemaDetailApi : YTKRequest
 
+- (instancetype)initWithCinemaID:(NSString *)cinemaId
+                         MovieID:(NSString *)movieId;
+
 @end

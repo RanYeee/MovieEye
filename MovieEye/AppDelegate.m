@@ -17,6 +17,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
+    
+    config.baseUrl = @"http://m.maoyan.com";
+    
     [QMUIConfigurationTemplate setupConfigurationTemplate];
     
 //    [QMUIConfigurationManager renderGlobalAppearances];

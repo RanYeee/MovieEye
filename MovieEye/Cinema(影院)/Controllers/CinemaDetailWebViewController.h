@@ -10,4 +10,7 @@
 
 @interface CinemaDetailWebViewController : UIViewController
 
+@property(nonatomic, strong) NSString *cinemaID;
+
+
 @end

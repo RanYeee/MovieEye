@@ -9,4 +9,5 @@ pod 'UITableView+FDTemplateLayoutCell', '~> 1.5.beta'
 pod 'DateTools'
 pod 'MJRefresh'
 pod 'LazyScroll'
+pod 'YTKNetwork'
 end

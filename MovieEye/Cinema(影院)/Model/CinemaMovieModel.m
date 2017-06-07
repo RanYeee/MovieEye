@@ -9,5 +9,8 @@
 #import "CinemaMovieModel.h"
 
 @implementation CinemaMovieModel
-
++(NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"_id":@"id"};
+}
 @end

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CinemaDetailModel.h"
 @interface CinemaDetailListCell : UITableViewCell
+
+@property(nonatomic, strong) CinemaDetailModel *detailModel;
 
 @end

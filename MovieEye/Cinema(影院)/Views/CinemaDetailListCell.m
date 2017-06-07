@@ -7,18 +7,44 @@
 //
 
 #import "CinemaDetailListCell.h"
+#import "DatesSelectView.h"
+@interface CinemaDetailListCell()
+
+@property (weak, nonatomic) IBOutlet UIView *selectItemView;
+
+@property(nonatomic, strong) DatesSelectView *selectView;
+
+@end
 
 @implementation CinemaDetailListCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.selectView = [[DatesSelectView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.selectItemView.height)];
+    
+    
+    
+    [self.selectItemView addSubview:self.selectView];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+-(void)setDetailModel:(CinemaDetailModel *)detailModel
+{
+    _detailModel = detailModel;
+    
+    self.selectView.itemTitleArray = [self getDates];
+}
 
-    // Configure the view for the selected state
+- (NSArray *)getDates
+{
+    NSMutableArray *tmpArray = [NSMutableArray array];
+    
+    for (NSDictionary *dict in _detailModel.Dates) {
+        
+        [tmpArray addObject:dict[@"text"]];
+    }
+    
+    return tmpArray;
 }
 
 @end

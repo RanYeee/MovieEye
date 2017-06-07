@@ -26,7 +26,7 @@
     self.addressLabel.text = model.addr;
      NSMutableAttributedString *attributedString_price = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d元起",model.sellPrice]];
     NSDictionary *attrsDictionary = @{NSFontAttributeName:[UIFont systemFontOfSize:11]};
-    [attributedString_price addAttributes:attrsDictionary range:NSMakeRange(2, 2)];
+    [attributedString_price addAttributes:attrsDictionary range:NSMakeRange(attributedString_price.length-2, 2)];
     self.priceLabel.attributedText = attributedString_price;
 }
 

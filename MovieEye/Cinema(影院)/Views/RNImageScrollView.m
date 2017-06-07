@@ -6,15 +6,15 @@
 //  Copyright © 2017年 Rany. All rights reserved.
 //
 
-#import "CinemaDetailTopView.h"
+#import "RNImageScrollView.h"
 #import "UIButton+WebCache.h"
 
 #define KSpacing 20.0f
 #define KTopSpacing 40.f
-#define KImg_height self.scrollView.height-KTopSpacing
+#define KImg_height self.height-KTopSpacing
 #define KImg_width (KImg_height)/25*18
 
-@interface CinemaDetailTopView()<UIScrollViewDelegate>
+@interface RNImageScrollView()<UIScrollViewDelegate>
 
 {
     int img_offset;
@@ -29,7 +29,7 @@
 @property(nonatomic, strong) NSMutableArray *imageViewArray;
 @end
 
-@implementation CinemaDetailTopView
+@implementation RNImageScrollView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -95,7 +95,7 @@
 {
     [super layoutSubviews];
     
-    CGRect scrollViewRect = CGRectMake(0, 84, self.width, self.height/2);
+    CGRect scrollViewRect = CGRectMake(0, 0, self.width, self.height);
     
     self.bgImageView.frame = scrollViewRect;
     
@@ -103,7 +103,7 @@
     
     self.scrollView.frame = scrollViewRect;
 
-    self.angleView.frame = CGRectMake(0, CGRectGetMaxY(self.scrollView.frame)-10, 14, 10);
+    self.angleView.frame = CGRectMake(0, CGRectGetMaxY(self.scrollView.frame)-9, 14, 10);
 
     self.angleView.centerX = self.centerX;
 
@@ -111,6 +111,11 @@
 
 -(void)addImageInScrollView
 {
+    
+    if (self.imageViewArray.count>0) {
+        
+        return;
+    }
     //设置背景图为图片数组的第一张
     [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:_imageURLArray[0]]];
     
@@ -125,8 +130,6 @@
         
         imageView.layer.borderColor = [UIColorWhite CGColor];
         
-        imageView.layer.borderWidth = 1.0f;
-        
         imageView.frame = CGRectMake(i*(KImg_width+KSpacing)+contentOffset, KTopSpacing/2,KImg_width,KImg_height);
         
         imageView.clipsToBounds = YES;
@@ -139,6 +142,15 @@
         
         [imageView sd_setImageWithURL:[NSURL URLWithString:_imageURLArray[i]] placeholderImage:nil];
         
+        if (i == 0) {
+            
+            imageView.layer.borderWidth = 1.0f;
+            
+            imageView.transform = CGAffineTransformMakeScale(1.15, 1.15);
+            
+            _previousImageView = imageView;
+        }
+        
         [self.scrollView addSubview:imageView];
         
         [self.imageViewArray addObject:imageView];
@@ -148,6 +160,11 @@
     self.scrollView.contentSize = CGSizeMake(imageCount*KImg_width+(imageCount-1)*KSpacing+2*contentOffset, 0);
 
     _currentImageView = self.imageViewArray[0];
+    
+    if (self.delegate) {
+        
+        [self.delegate scrollViewDidEndScrollAtIndex:0];
+    }
 }
 
 
@@ -169,7 +186,7 @@
     
     int imgOffset = KImg_width/2;
     
-    NSLog(@"offset_X = %d ,index = %d",offset_X%imgOffset,offset_X/imgOffset);
+//    NSLog(@"offset_X = %d ,index = %d",offset_X%imgOffset,offset_X/imgOffset);
     
     
 
@@ -233,7 +250,7 @@
                 
                     [UIView animateWithDuration:0.2 animations:^{
                         _previousImageView.transform = CGAffineTransformMakeScale(1.0, 1.0);;
-                        
+                        _previousImageView.layer.borderWidth = 0.0f;
                         
                     }];
 //                }
@@ -242,8 +259,8 @@
             
             _currentImageView = (UIImageView *)self.imageViewArray[index];
             [UIView animateWithDuration:0.2 animations:^{
-                _currentImageView.transform = CGAffineTransformMakeScale(1.15, 1.15);;
-                
+                _currentImageView.transform = CGAffineTransformMakeScale(1.15, 1.15);
+                _currentImageView.layer.borderWidth = 1.0f;
              
             }completion:^(BOOL finished) {
                 
@@ -261,7 +278,7 @@
         
     }];
     
-    NSLog(@"offsetX =%d index = %d",offset_X,offset_X/img_offset);
+//    NSLog(@"offsetX =%d index = %d",offset_X,offset_X/img_offset);
 }
 
 @end

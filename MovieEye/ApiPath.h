@@ -80,7 +80,7 @@
  cinemaid : 影院id
  movieid : 电影id
  */
-#define API_CINEMA_DETAIL(cinemaid,movieid) [NSString stringWithFormat:@"https://m.maoyan.com/showtime/wrap.json?cinemaid=%@&movieid=%@",cinemaid,movieid]
+#define API_CINEMA_DETAIL(cinemaid,movieid) [NSString stringWithFormat:@"http://m.maoyan.com/showtime/wrap.json?cinemaid=%@&movieid=%@",cinemaid,movieid]
 
 /**
  选座

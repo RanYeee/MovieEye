@@ -28,5 +28,6 @@
 #import "AppTools.h"
 #import <QMUIKit/QMUIConfigurationManager.h>
 #import <QMUIKit/QMUIConfigurationTemplate.h>
+#import <YTKNetwork/YTKNetwork.h>
 
 #endif /* ME_Prefix_pch */

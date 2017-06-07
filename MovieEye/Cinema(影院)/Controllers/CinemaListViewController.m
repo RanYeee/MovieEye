@@ -11,6 +11,7 @@
 #import "CinemaListCell.h"
 #import "AreaListView.h"
 #import "CinemaDetailViewController.h"
+#import "CinemaDetailWebViewController.h"
 @interface CinemaListViewController ()<UITableViewDelegate,UITableViewDataSource,QMUINavigationTitleViewDelegate,AreaListViewDelegate>
 
 /** button*/
@@ -168,13 +169,11 @@
     
     [[APIRequestManager shareInstance]getHTTPPath:API_CINEMA_LIST success:^(id request) {
         
-        NSLog(@"%@",request[@"data"][@"番禺区"][0]);
+        NSLog(@"request[data[番禺区][0]  = %@",request[@"data"][@"番禺区"][0]);
         
         self.areaInfoDict = request[@"data"];
         
         [self.areaNameArray addObjectsFromArray:self.areaInfoDict.allKeys];
-        
-        [NSObject resolveDict:request[@"data"][@"番禺区"][0]];
         
         [self selectAreaToReloadDateModel:self.areaNameArray[0]];
         
@@ -251,11 +250,24 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    CinemaDetailViewController *detail = [[CinemaDetailViewController alloc]init];
-    
-    [self.navigationController pushViewController:detail animated:YES];
+//    CinemaDetailViewController *detail = [[CinemaDetailViewController alloc]init];
+//    
+//    CinemaListModel *model = self.modelArray[indexPath.row];
+//    
+//    detail.cinemaID = [NSString stringWithFormat:@"%d",model._id];
+//    
+//    [self.navigationController pushViewController:detail animated:YES];
     
 
+    CinemaDetailWebViewController *detail = [[CinemaDetailWebViewController alloc]init];
+    
+    CinemaListModel *model = self.modelArray[indexPath.row];
+
+    detail.cinemaID = [NSString stringWithFormat:@"%d",model._id];
+    
+    [self.navigationController pushViewController:detail animated:YES];
+
+    
 }
 
 

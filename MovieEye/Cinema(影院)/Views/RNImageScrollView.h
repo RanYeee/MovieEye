@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CinemaMovieModel.h"
+#import "RNImageScrollView.h"
 
-@protocol CimemaDatailTopDelegate <NSObject>
+@protocol RNImageScrollViewDelegate <NSObject>
 
 - (void)scrollViewDidEndScrollAtIndex:(NSInteger)index;
 
 @end
-@interface CinemaDetailTopView : UIView
+@interface RNImageScrollView : UIView
 
 @property(nonatomic, strong) UIScrollView *scrollView;
 
@@ -25,6 +25,6 @@
 @property(nonatomic, strong) NSArray *imageURLArray;
 
 
-@property(nonatomic, weak) id <CimemaDatailTopDelegate>delegate;
+@property(nonatomic, weak) id <RNImageScrollViewDelegate>delegate;
 
 @end
