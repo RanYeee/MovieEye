@@ -1,6 +1,6 @@
 # MovieEye——模仿猫眼电影APP的ios电影客户端
 
-<font color='red'>仅供学习使用，并无商业用途</font>
+**仅供学习使用，并无商业用途**
 
 >本demo使用的框架有以下
 
