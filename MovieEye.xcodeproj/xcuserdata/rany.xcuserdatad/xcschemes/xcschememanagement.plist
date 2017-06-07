@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>MovieEyeDoc.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>29653D791EE68954002C6C73</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>29915C881E4B042B000997AC</key>
 		<dict>
 			<key>primary</key>

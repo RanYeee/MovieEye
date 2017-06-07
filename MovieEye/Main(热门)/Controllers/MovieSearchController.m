@@ -386,12 +386,12 @@
                 
             }else{
                 
-                return [HotSearchCell rowHeightWithTagArray:self.hotSearchNameArray]+44;
+                return [HotSearchCell rowHeightWithTagArray:self.hotSearchNameArray]+88;
             }
             
         }else{
             
-            return [HotSearchCell rowHeightWithTagArray:self.hotSearchNameArray]+44;
+            return [HotSearchCell rowHeightWithTagArray:self.hotSearchNameArray]+88;
 
         }
         
