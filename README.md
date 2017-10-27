@@ -40,7 +40,7 @@ pod update
 
 
 欢迎关注我的简书：[Rany_Xu](http://www.jianshu.com/u/c45291e63883)
-个人博客：[Ranyeee.top](http://ranyeee.top)
+个人博客：[Ranyeee.top](http://blog.arxu2.cn)
 
 
 
